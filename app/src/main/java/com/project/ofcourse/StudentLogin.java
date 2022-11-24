@@ -27,8 +27,15 @@ public class StudentLogin extends AppCompatActivity {
                 final EditText txtPass = (EditText)findViewById(R.id.txtStudentPassword);
                 String email = txtEmail.getText().toString();
                 String password = txtPass.getText().toString();
-                // email and password needs to be checked against database
-                openTimelineActivity();
+
+                Student loggedInStudent = new Student(email, password);
+                if (loggedInStudent.login() == 1) {
+                    // loggedInStudent needs to be checked against database before proceeding
+                    openTimelineActivity();
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "Incorrect Email or Password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

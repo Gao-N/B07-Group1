@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAdminLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtStudentPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtStudentPassword"
+        app:layout_constraintVertical_bias="0.39" />
 
     <EditText
         android:id="@+id/txtStudentEmail"
@@ -31,7 +32,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.452" />
 
     <EditText
         android:id="@+id/txtStudentPassword"
@@ -68,9 +70,9 @@
         android:backgroundTint="@color/black"
         android:text="Don't Have An Account?"
         android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <Button
         android:id="@+id/btnAdminLogin"
