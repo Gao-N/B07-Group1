@@ -1,14 +1,40 @@
 package com.project.ofcourse;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
 public class AdminDashboard extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_dashboard);
+        setContentView(R.layout.admin_dashboard);
+
+        Button addBtn = findViewById(R.id.addCourseButton);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openAdminAddCourse();
+            }
+        });
+
+        Button viewBtn = findViewById(R.id.viewCourseListButton);
+        viewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCourseList();
+            }
+        });
+    }
+    public void openAdminAddCourse(){
+        Intent intent = new Intent(this, AdminAddCourse.class);
+        startActivity(intent);
+    }
+    public void viewCourseList(){
+        Intent intent = new Intent(this, AdminViewCourseList.class);
+        startActivity(intent);
     }
 }

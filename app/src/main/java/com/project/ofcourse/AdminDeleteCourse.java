@@ -1,5 +1,6 @@
 package com.project.ofcourse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,34 +14,25 @@ public class AdminDeleteCourse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_delete_courses);
 
-        Button back = (Button)findViewById(R.id.adminDeleteCoursesBackButton);
+        Button back = findViewById(R.id.adminDeleteCoursesBackButton);
         back.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){
-                setContentView(R.layout.admin_view_courselist);
+            public void onClick(View view) {
+                openCourseList();
             }
         });
-    }
-}
 
-/*
-
-public class AdminLogin extends AppCompatActivity {
-// make the button go to the next activity
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Button loginBtn = (Button)findViewById(R.id.adminLoginButton);
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        Button del = findViewById(R.id.adminDeleteCoursesButton);
+        del.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(MainActivity.this, AdminDashboard.class));
-                // have to create a Dashboard Activity in manifest and a Dashboard class like this
+                //firebase stuff to delete course
+                openCourseList();
             }
         });
-
+    }
+    public void openCourseList(){
+        Intent intent = new Intent(this, AdminViewCourseList.class);
+        startActivity(intent);
     }
 }
- */
