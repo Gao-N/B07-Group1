@@ -28,6 +28,14 @@ public class AdminDashboard extends AppCompatActivity {
                 viewCourseList();
             }
         });
+
+        Button logout = findViewById(R.id.adminLogout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewAdminLogin();
+            }
+        });
     }
     public void openAdminAddCourse(){
         Intent intent = new Intent(this, AdminAddCourse.class);
@@ -35,6 +43,11 @@ public class AdminDashboard extends AppCompatActivity {
     }
     public void viewCourseList(){
         Intent intent = new Intent(this, AdminViewCourseList.class);
+        startActivity(intent);
+    }
+
+    public void viewAdminLogin(){
+        Intent intent = new Intent(this, AdminLogin.class);
         startActivity(intent);
     }
 }
