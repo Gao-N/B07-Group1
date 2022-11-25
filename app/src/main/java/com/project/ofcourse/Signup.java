@@ -43,5 +43,7 @@ public class Signup extends AppCompatActivity {
 
     private void backToSignIn() {
         //Implement intents here to go back to signin page
+        Intent intent = new Intent(this, StudentLogin.class);
+        startActivity(intent);
     }
 }
