@@ -1,26 +1,16 @@
 package com.project.ofcourse;
 
 public class Course {
-    String courseName;
-    String courseCode;
+    public String name, code, session, prereq;
 
-    Course [] prerequisites;
-    String [] offeringSession;
-
-    public Course(String name, String code){
-        courseName = name;
-        courseCode = code;
+    public Course(){
 
     }
-    public Course searchCourse(Course [] courses, String name){
-        for (Course c: courses){
-            if (c.courseCode.equalsIgnoreCase(name)){
-                return c;
-            }
-            else {
-                // somehow tell the user that the course wasn't found
-            }
-        }
-        return null;
+    public Course(String name, String code, String session, String prereq){
+        this.name = name;
+        this.code = code;
+        this.session = session;
+        this.prereq = prereq;
+
     }
 }
