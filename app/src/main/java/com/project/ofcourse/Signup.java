@@ -31,12 +31,17 @@ public class Signup extends AppCompatActivity {
                 String password = txtPass.getText().toString();
                 String first = txtFirstName.getText().toString();
                 String last = txtLastName.getText().toString();
-                registerUser();
+                registerUserMsg();
+                backToSignIn();
             }
         });
     }
 
-    private void registerUser() {
+    private void registerUserMsg() {
         Toast.makeText(getApplicationContext(), "Not Yet Implemented", Toast.LENGTH_SHORT).show();
+    }
+
+    private void backToSignIn() {
+        //Implement intents here to go back to signin page
     }
 }
