@@ -19,4 +19,25 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="add_course_details">Add course details</string>
+    <string name="course_name">Course name</string>
+    <string name="course_code">course code</string>
+    <string name="offering_session">offering session</string>
+    <string name="prerequisites">prerequisites</string>
+    <string name="add_course">add course</string>
+    <string name="add_a_course">add a course</string>
+    <string name="view_course_list">view course list</string>
+    <string name="delete_courses">Delete courses</string>
+    <string name="pick_delete_courses">delete courses</string>
+    <string name="back_button">back</string>
+    <string name="ofcourse">OFCOURSE</string>
+    <string name="sign_in">sign in</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
+    <string name="back">back</string>
+    <string name="course_list">COURSE LIST</string>
+    <string name="admin_add_course">add course</string>
+    <string name="admin_course_name">course name</string>
+    <string name="log_out">log out</string>
 </resources>
