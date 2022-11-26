@@ -14,4 +14,6 @@
     <color name="editText_hint">#919191</color>
     <color name="adminLoginButton_text">#FF0000</color>
     <color name="cassiecolor">#1B1A1A</color>
+    <color name="cassiebutton">#007E72</color>
+    <color name="cassieheader">#00BCD4</color>
 </resources>
