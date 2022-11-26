@@ -65,11 +65,15 @@ public class StudentLogin extends AppCompatActivity {
 
     private void openSignUpActivity() {
         // launch the Sign Up activity
-        Toast.makeText(getApplicationContext(), "Not Yet Implemented", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent (this, Signup.class);
+        startActivity(intent);
+        //Toast.makeText(getApplicationContext(), "Not Yet Implemented", Toast.LENGTH_SHORT).show();
     }
 
     private void openAdminLoginActivity() {
         // launch Admin Login activity
-        Toast.makeText(getApplicationContext(), "Not Yet Implemented", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Not Yet Implemented", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent (this, AdminLogin.class);
+        startActivity(intent);
     }
 }

@@ -92,6 +92,7 @@ public class AdminAddCourse extends AppCompatActivity {
                         Snackbar.make(view, "Course Successfully Added", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
                         Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
+                        course.id = documentReference.getId();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

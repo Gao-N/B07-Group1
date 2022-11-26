@@ -1,7 +1,7 @@
 package com.project.ofcourse;
 
 public class Course {
-    public String name, code, session, prereq;
+    public String name, code, session, prereq, id;
 
     public Course(){
 
