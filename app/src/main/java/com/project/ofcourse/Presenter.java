@@ -9,5 +9,16 @@ public class Presenter {
         this.view = view;
     }
 
+    public void checkStudent() {
+        Student student = new Student(view.getEmail(), view.getPassword());
+
+        if (model.isFound(student)) {
+            view.openTimelineActivity();
+        }
+        else {
+            view.displayMessage("Incorrect Email or Password");
+        }
+
+    }
 
 }
