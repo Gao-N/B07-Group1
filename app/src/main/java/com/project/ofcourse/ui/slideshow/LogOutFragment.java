@@ -17,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.project.ofcourse.MainActivity;
 import com.project.ofcourse.R;
+import com.project.ofcourse.StudentLogin;
 import com.project.ofcourse.databinding.FragmentSlideshowBinding;
 import com.project.ofcourse.ui.home.HomeFragment;
 import com.project.ofcourse.ui.login.LoginActivity;
@@ -34,8 +35,7 @@ public class LogOutFragment extends Fragment {
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
         return root;
     }
 
@@ -69,7 +69,7 @@ public class LogOutFragment extends Fragment {
     }
 
     public void logOutFcn() {
-        Intent LogoutIntent = new Intent(getActivity(), LoginActivity.class);
+        Intent LogoutIntent = new Intent(getActivity(), StudentLogin.class);
         startActivity(LogoutIntent);
     }
 }

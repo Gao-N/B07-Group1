@@ -80,7 +80,7 @@
         android:id="@+id/btnSignup"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:backgroundTint="@color/button_background"
+        android:backgroundTint="@color/cassybutton"
         android:text="Sign Up"
         android:textSize="20sp"
 

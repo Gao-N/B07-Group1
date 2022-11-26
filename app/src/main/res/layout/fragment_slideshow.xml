@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cassiecolor"
+    android:background="@color/cassycolor"
     tools:context=".ui.slideshow.LogOutFragment">
 
     <TextView

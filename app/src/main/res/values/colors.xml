@@ -13,5 +13,6 @@
     <color name="editText_background">#1A1A1A</color>
     <color name="editText_hint">#919191</color>
     <color name="adminLoginButton_text">#FF0000</color>
-    <color name="cassiecolor">#1B1A1A</color>
+    <color name="cassycolor">#1B1A1A</color>
+    <color name="cassybutton">#007E72</color>
 </resources>

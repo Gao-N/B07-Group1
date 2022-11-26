@@ -47,7 +47,7 @@ public class AdminDashboard extends AppCompatActivity {
     }
 
     public void viewAdminLogin(){
-        Intent intent = new Intent(this, AdminLogin.class);
+        Intent intent = new Intent(this, StudentLogin.class);
         startActivity(intent);
     }
 }

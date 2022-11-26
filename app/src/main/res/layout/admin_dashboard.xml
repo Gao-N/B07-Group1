@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.443" />
 
     <Button
         android:id="@+id/viewCourseListButton"
@@ -29,15 +29,16 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addCourseButton"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintVertical_bias="0.317" />
 
     <Button
         android:id="@+id/adminLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#880000"
         android:text="@string/log_out"
         app:layout_constraintStart_toStartOf="parent"
