@@ -24,7 +24,7 @@
         android:id="@+id/txtStudentEmail"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:background="@color/background"
+        android:backgroundTint="#919191"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -41,7 +41,7 @@
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginTop="4dp"
-        android:background="@color/background"
+        android:backgroundTint="#919191"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -87,4 +87,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

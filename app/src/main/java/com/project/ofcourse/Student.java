@@ -55,11 +55,11 @@ public class Student {
         };
         ref.addValueEventListener(listener);
         */
-        if (false) {
-            return 1;
-        }
-        else {
-            return 0;
-        }
+//        if (false) {
+           return 1;
+//        }
+//        else {
+//            return 0;
+//        }
     }
 }
