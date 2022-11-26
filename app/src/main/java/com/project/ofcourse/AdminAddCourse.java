@@ -38,9 +38,7 @@ public class AdminAddCourse extends AppCompatActivity {
                 editName = (EditText) findViewById(R.id.courseNameEditText);
                 editSession = (EditText) findViewById(R.id.offeringSessionEditText);
                 editPrereq = (EditText) findViewById(R.id.prerequisiteEditText);
-                Log.d("TAG", "Button works");
                 newCourse(view);
-                Log.d("TAG", "Button works");
                 //backToDashboard();
             }
         });
