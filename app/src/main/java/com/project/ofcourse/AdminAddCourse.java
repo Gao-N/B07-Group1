@@ -1,13 +1,14 @@
 package com.project.ofcourse;
 
+import android.content.Context;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +20,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class AdminAddCourse extends AppCompatActivity {
     EditText editCode, editName, editSession, editPrereq;
+    //LinearLayout layout = (LinearLayout)findViewById(R.id.linearLayout);
+    private LinearLayout layout;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -41,7 +41,10 @@ public class AdminAddCourse extends AppCompatActivity {
                 Log.d("TAG", "Button works");
                 newCourse(view);
                 Log.d("TAG", "Button works");
-                //backToDashboard();
+
+
+
+                backToDashboard();
             }
         });
 
@@ -104,7 +107,20 @@ public class AdminAddCourse extends AppCompatActivity {
                     }
                 });
 
-
-
+//        LinearLayout layout = findViewById(R.id.courseLayout);
+//        // Context??
+//        TextView textView = new TextView(getApplicationContext());
+//        textView.setText(code);
+//        textView.setTextColor(Color.WHITE);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.MATCH_PARENT
+//        );
+//        textView.setLayoutParams(params);
+//        layout.addView(textView);
+        layout = (LinearLayout)findViewById(R.id.courseLayout);
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView=inflater.inflate(R.layout.field, null);
+        layout.addView(rowView, layout.getChildCount()-1);
     }
 }
