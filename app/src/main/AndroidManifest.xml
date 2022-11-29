@@ -29,7 +29,6 @@
             android:name=".ui.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -40,7 +39,24 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
+        <activity
+            android:name=".Signup"
+            android:exported="true" />
+        <activity
+            android:name=".AdminLogin"
+            android:exported="true" />
+        <activity
+            android:name=".AdminDashboard"
+            android:exported="true" />
+        <activity
+            android:name=".AdminDeleteCourse"
+            android:exported="true" />
+        <activity
+            android:name=".AdminAddCourse"
+            android:exported="true" />
+        <activity
+            android:name=".AdminViewCourseList"
+            android:exported="true" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
