@@ -5,8 +5,8 @@ public class Model {
     public Model() {
     }
 
-    public boolean isFound(Student student) {
-        //check student against firebase for login
+    public boolean isFound(String email, String password) {
+        //check email and password against firebase for login
         return true;
     }
 }
