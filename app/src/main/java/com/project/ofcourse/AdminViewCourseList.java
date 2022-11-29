@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +22,6 @@ public class AdminViewCourseList extends AppCompatActivity {
         setContentView(R.layout.admin_view_courselist);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        ScrollView scrollView = findViewById(R.id.scrollView);
 
         Button back = findViewById(R.id.backbutton);
         back.setOnClickListener(new View.OnClickListener() {
