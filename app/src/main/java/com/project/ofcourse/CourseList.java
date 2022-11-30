@@ -30,17 +30,11 @@ public class CourseList extends AppCompatActivity {
     FirebaseFirestore db;
     MyAdapter myAdapter;
     ArrayList<Course> list;
-    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courselist);
-
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Retrieving Course Data...");
-        progressDialog.show();
 
         recyclerView = findViewById(R.id.courseList);
         recyclerView.setHasFixedSize(true);
@@ -60,9 +54,6 @@ public class CourseList extends AppCompatActivity {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (error != null){
-                            if (progressDialog.isShowing()){
-                                progressDialog.dismiss();
-                            }
                             Log.e("Firestore error", error.getMessage());
                             return;
                         }
@@ -72,9 +63,6 @@ public class CourseList extends AppCompatActivity {
                         }
 
                         myAdapter.notifyDataSetChanged();
-                        if (progressDialog.isShowing()){
-                            progressDialog.dismiss();
-                        }
 
                     }
                 });
