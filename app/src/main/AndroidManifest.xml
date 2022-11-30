@@ -13,6 +13,15 @@
         android:theme="@style/Theme.OFCOURSE"
         tools:targetApi="31">
         <activity
+            android:name=".EditPastCoursesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edit_past_courses"
+            android:theme="@style/Theme.OFCOURSE.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".StudentLogin"
             android:exported="true">
             <intent-filter>
@@ -30,7 +39,6 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.OFCOURSE.NoActionBar">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -53,6 +61,7 @@
         <activity
             android:name=".AdminViewCourseList"
             android:exported="true" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
