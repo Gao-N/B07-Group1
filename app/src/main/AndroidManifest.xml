@@ -55,9 +55,6 @@
             android:name=".AdminDashboard"
             android:exported="true" />
         <activity
-            android:name=".AdminDeleteCourse"
-            android:exported="true" />
-        <activity
             android:name=".AdminAddCourse"
             android:exported="true" />
         <activity
