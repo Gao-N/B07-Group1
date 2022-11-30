@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1B1A1A">
+    android:background="@color/cassycolor">
 
 
     <Button
@@ -14,11 +14,12 @@
         android:text="@string/add_a_course"
         android:textColorLink="#000000"
         android:textSize="16sp"
+        android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.285" />
+        app:layout_constraintVertical_bias="0.443" />
 
     <Button
         android:id="@+id/viewCourseListButton"
@@ -27,19 +28,22 @@
         android:backgroundTint="#007E72"
         android:text="@string/view_course_list"
         android:textSize="16sp"
+        android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addCourseButton"
-        app:layout_constraintVertical_bias="0.233" />
+        app:layout_constraintVertical_bias="0.317" />
 
     <Button
         android:id="@+id/adminLogout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#880000"
         android:text="@string/log_out"
+        android:textColor="@color/buttonText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

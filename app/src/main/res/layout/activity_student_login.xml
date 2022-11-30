@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/cassycolor"
     tools:context=".StudentLogin">
 
     <Button
@@ -13,6 +13,7 @@
         android:layout_height="70dp"
         android:backgroundTint="@color/button_background"
         android:text="Student Login"
+        android:textColor="@color/buttonText"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/btnAdminLogin"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +25,7 @@
         android:id="@+id/txtStudentEmail"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:background="@color/background"
+        android:backgroundTint="#919191"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -41,7 +42,7 @@
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginTop="4dp"
-        android:background="@color/background"
+        android:backgroundTint="#919191"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -71,7 +72,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/background"
         android:text="Don't Have An Account?"
-        android:textColor="@color/purple_500"
+        android:textColor="#8734FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
@@ -87,4 +88,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

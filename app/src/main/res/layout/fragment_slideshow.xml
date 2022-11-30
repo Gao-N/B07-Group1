@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cassiecolor"
+    android:background="@color/cassycolor"
     tools:context=".ui.slideshow.LogOutFragment">
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FF0000"
         android:text="Yes"
-        android:textColor="@color/white"
+        android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/text_slideshow"
         app:layout_constraintHorizontal_bias="0.501"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#009900"
         android:text="No"
-        android:textColor="@color/white"
+        android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"

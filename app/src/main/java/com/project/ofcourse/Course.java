@@ -16,4 +16,20 @@ public class Course {
         this.prereq = prereq;
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public String getPrereq() {
+        return prereq;
+    }
 }

@@ -1,13 +1,11 @@
 package com.project.ofcourse;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,11 +17,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class AdminAddCourse extends AppCompatActivity {
     EditText editCode, editName, editSession, editPrereq;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -38,8 +34,12 @@ public class AdminAddCourse extends AppCompatActivity {
                 editName = (EditText) findViewById(R.id.courseNameEditText);
                 editSession = (EditText) findViewById(R.id.offeringSessionEditText);
                 editPrereq = (EditText) findViewById(R.id.prerequisiteEditText);
+                Log.d("TAG", "Button works");
                 newCourse(view);
-                //backToDashboard();
+                Log.d("TAG", "Button works");
+
+
+                backToDashboard();
             }
         });
 
@@ -102,7 +102,22 @@ public class AdminAddCourse extends AppCompatActivity {
                     }
                 });
 
+//        View layout = findViewById(R.id.courseLayout);
+//        // Context??
+//        TextView textView = new TextView(this);
+//        textView.setText(code);
+//        textView.setTextColor(Color.WHITE);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.MATCH_PARENT
+//        );
+//        textView.setLayoutParams(params);
+//        ((LinearLayout)layout).addView((TextView)textView);
+//
 
-
+//        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        final View rowView=inflater.inflate(R.layout.field, null);
+//
+//        layout.addView(rowView, layout.getChildCount()-1);
     }
 }

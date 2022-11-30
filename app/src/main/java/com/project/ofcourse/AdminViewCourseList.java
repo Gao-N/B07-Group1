@@ -2,21 +2,31 @@ package com.project.ofcourse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class AdminViewCourseList extends AppCompatActivity {
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_view_courselist);
 
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         Button back = findViewById(R.id.backbutton);
-        back.setOnClickListener(new View.OnClickListener(){
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
                 openAdminDashboard();
             }
         });
@@ -36,17 +46,40 @@ public class AdminViewCourseList extends AppCompatActivity {
                 openAdminDeleteCourse();
             }
         });
+        db.collection("courses")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            for (QueryDocumentSnapshot document: task.getResult()){
+                                Log.d("TAG", "DocumentSnapshot added with ID: " + document.getId());
+                            }
+                        }
+                        else {
+                            Log.d("TAG", "Error getting Course", task.getException());
+                        }
+                    }
+                });
     }
-    public void openAdminDashboard(){
+
+    public void openAdminDashboard() {
         Intent intent = new Intent(this, AdminDashboard.class);
         startActivity(intent);
     }
-    public void openAdminAddCourses(){
+
+    public void openAdminAddCourses() {
         Intent intent = new Intent(this, AdminAddCourse.class);
         startActivity(intent);
     }
-    public void openAdminDeleteCourse(){
+
+    public void openAdminDeleteCourse() {
         Intent intent = new Intent(this, AdminDeleteCourse.class);
         startActivity(intent);
     }
 }
+
+
+// reads the courses in firebase
+// displays
+// CSCB07: Software Design
