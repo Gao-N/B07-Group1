@@ -10,11 +10,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="84dp"
         android:text="@string/course_list"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
