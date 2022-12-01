@@ -21,6 +21,10 @@
         </activity>
         <activity
             android:name=".StudentLogin"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".AdminDeleteCourse"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,9 +53,6 @@
             android:exported="true" />
         <activity
             android:name=".AdminDashboard"
-            android:exported="true" />
-        <activity
-            android:name=".AdminDeleteCourse"
             android:exported="true" />
         <activity
             android:name=".AdminAddCourse"
