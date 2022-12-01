@@ -1,7 +1,9 @@
 package com.project.ofcourse;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,15 +19,35 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Text;
 
 public class AdminLogin extends AppCompatActivity {
 
+    private ProgressDialog progressDialog;
+
     public String getEmail(){
-        return ((EditText)findViewById(R.id.emailAddressEditText)).getText().toString();
+        EditText emailText = (EditText)findViewById(R.id.emailAddressEditText);
+        String email = emailText.getText().toString();
+
+        if (email.isEmpty()) {
+            emailText.setError("Email Cannot be Blank");
+        }
+
+        return email;
     }
+
     public String getPassword(){
-        return ((EditText)findViewById(R.id.passwordEditText)).getText().toString();
+        EditText passText = (EditText)findViewById(R.id.passwordEditText);
+        String pass = passText.getText().toString();
+
+        if (pass.isEmpty()) {
+            passText.setError("Email Cannot be Blank");
+        }
+
+        return pass;
     }
 
     @Override
@@ -33,69 +55,65 @@ public class AdminLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_login);
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("courses");
+        progressDialog = new ProgressDialog(this);
+
         Button loginBtn = findViewById(R.id.adminLoginButton);
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login(view);
+                progressDialog.setTitle("Admin Login");
+                progressDialog.setMessage("Logging on...");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
+                String email = getEmail();
+                String pass = getPassword();
+                if (email.isEmpty() || pass.isEmpty()) {
+                    loginError("Incorrect Email or Password");
+                }
+                else {
+                    login(email, pass, new AdminLoginCallback() {
+                        @Override
+                        public void adminFound(boolean found) {
+                            if (found) {
+                                openAdminDashboard();
+                            } else {
+                                loginError("Incorrect Email or Password");
+                            }
+                        }
+                    });
+                }
             }
         });
     }
     public void openAdminDashboard(){
+        progressDialog.dismiss();
         Intent intent = new Intent(this, AdminDashboard.class);
         startActivity(intent);
     }
 
-    public void login(View view){
+    public void loginError(String message) {
+        progressDialog.dismiss();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void login(String email, String pass, AdminLoginCallback callback){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final String[] docID = new String[1];
-        // getting the document id for the input email
-        db.collection("admin").whereEqualTo("email", getEmail())
-                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("admin").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful() && task.getResult().isEmpty()){
-                            DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                            docID[0] = documentSnapshot.getId();
+                        if (task.isSuccessful()) {
+                            boolean isFound = false;
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                if (document.get("email").equals(email) && document.get("password").equals(pass)) {
+                                    isFound = true;
+                                }
+                            }
+                            callback.adminFound(isFound);
+                        } else {
+                            Log.d("TAG", "Error getting documents: ", task.getException());
                         }
                     }
                 });
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("admin");
-        ref.child(docID[0]).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                // able to get the info
-                if (task.isSuccessful()) {
-                    // the info is non-null
-                    if (task.getResult().exists()){
-                        DataSnapshot dataSnapshot = task.getResult();
-                        String email = String.valueOf(dataSnapshot.child("email").getValue());
-                        String pass = String.valueOf(dataSnapshot.child("password").getValue());
-
-                        // email and password are in database
-                        if (email.equals(getEmail()) && pass.equals(getPassword())){
-                            openAdminDashboard();
-                        }
-                        // password doesn't match
-                        else if(!pass.equals(getPassword())){
-                            Toast.makeText(getApplicationContext(), "Invalid password",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else {
-                        // null
-                        Toast.makeText(getApplicationContext(), "Cannot find admin credentials",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else {
-                    // couldn't read info
-                    Toast.makeText(getApplicationContext(), "Failed to read",
-                            Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        });
     }
 }
