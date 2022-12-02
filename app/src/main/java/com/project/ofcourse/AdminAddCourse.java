@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +14,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AdminAddCourse extends AppCompatActivity {
     EditText editCode, editName, editSession, editPrereq;
@@ -29,16 +38,29 @@ public class AdminAddCourse extends AppCompatActivity {
         addCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // adds course details to firebase, updates course list
                 editCode = (EditText) findViewById(R.id.courseCodeEditText);
                 editName = (EditText) findViewById(R.id.courseNameEditText);
                 editSession = (EditText) findViewById(R.id.offeringSessionEditText);
                 editPrereq = (EditText) findViewById(R.id.prerequisiteEditText);
-                Log.d("TAG", "Button works");
-                newCourse(view);
-                Log.d("TAG", "Button works");
 
-
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChild(editCode.getText().toString().trim())){
+                            // course already exists
+                            updateCourse(view);
+                        }
+                        else { //course doesn't exist
+                            newCourse(view);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getApplicationContext(), "Failed to add course",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
                 backToDashboard();
             }
         });
@@ -56,32 +78,38 @@ public class AdminAddCourse extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void newCourse(View view){
-
+    public Course getCourseDetails(){
         String name = editName.getText().toString().trim();
         String code = editCode.getText().toString().trim();
         String session = editSession.getText().toString().trim();
         String prereq = editPrereq.getText().toString().trim();
+        return new Course(name, code, session, prereq);
+    }
 
-        if(name.isEmpty()){
+    public void checkCourseDetails(Course course){
+        if (course.getName().isEmpty()){
             editName.setError("Course name is required");
             editName.requestFocus();
             return;
         }
-        if(code.isEmpty()){
+        if (course.getCode().isEmpty()){
             editCode.setError("Course code is required");
             editCode.requestFocus();
             return;
         }
-        if(session.isEmpty()){
+        if (course.getSession().isEmpty()){
             editSession.setError("Course session is required");
             editSession.requestFocus();
             return;
         }
+    }
+
+    public void newCourse(View view){
+        Course course = getCourseDetails();
+        checkCourseDetails(course);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference coursesRef = db.collection("courses");
-        Course course = new Course (name, code, session, prereq);
 
         coursesRef.add(course)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -101,23 +129,32 @@ public class AdminAddCourse extends AppCompatActivity {
                         Log.w("TAG", "Error adding document", e);
                     }
                 });
+    }
 
-//        View layout = findViewById(R.id.courseLayout);
-//        // Context??
-//        TextView textView = new TextView(this);
-//        textView.setText(code);
-//        textView.setTextColor(Color.WHITE);
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT,
-//                LinearLayout.LayoutParams.MATCH_PARENT
-//        );
-//        textView.setLayoutParams(params);
-//        ((LinearLayout)layout).addView((TextView)textView);
-//
+    public void updateCourse(View view){
+        Course course = getCourseDetails();
+        checkCourseDetails(course);
 
-//        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        final View rowView=inflater.inflate(R.layout.field, null);
-//
-//        layout.addView(rowView, layout.getChildCount()-1);
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", course.getName());
+        map.put("code", course.getCode());
+        map.put("session", course.getSession());
+        map.put("prereq", course.getPrereq());
+        FirebaseDatabase.getInstance().getReference().child("courses")
+                .updateChildren(map)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getApplicationContext(), "Course Updated Successfully",
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "Error Updating Course",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
     }
 }
