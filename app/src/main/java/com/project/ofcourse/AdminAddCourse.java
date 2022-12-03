@@ -90,7 +90,8 @@ public class AdminAddCourse extends AppCompatActivity {
         return new Course(name, code, session, prereq);
     }
 
-    public void checkCourseDetails(Course course){
+    public void newCourse(View view){
+        Course course = getCourseDetails();
         if (course.getName().isEmpty()){
             editName.setError("Course name is required");
             editName.requestFocus();
@@ -106,11 +107,6 @@ public class AdminAddCourse extends AppCompatActivity {
             editSession.requestFocus();
             return;
         }
-    }
-
-    public void newCourse(View view){
-        Course course = getCourseDetails();
-        checkCourseDetails(course);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference coursesRef = db.collection("courses");
@@ -137,7 +133,21 @@ public class AdminAddCourse extends AppCompatActivity {
 
     public void updateCourse(View view, DocumentSnapshot document){
         Course course = getCourseDetails();
-        checkCourseDetails(course);
+        if (course.getName().isEmpty()){
+            editName.setError("Course name is required");
+            editName.requestFocus();
+            return;
+        }
+        if (course.getCode().isEmpty()){
+            editCode.setError("Course code is required");
+            editCode.requestFocus();
+            return;
+        }
+        if (course.getSession().isEmpty()){
+            editSession.setError("Course session is required");
+            editSession.requestFocus();
+            return;
+        }
 
         Map<String, Object> map = new HashMap<>();
         map.put("name", course.getName());
@@ -152,7 +162,6 @@ public class AdminAddCourse extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
                             db.collection("courses").document(document.getId()).set(map);
-                            // showing this when you add a course?????
                             Toast.makeText(getApplicationContext(), "Course Updated Successfully",
                                     Toast.LENGTH_LONG).show();
                         }

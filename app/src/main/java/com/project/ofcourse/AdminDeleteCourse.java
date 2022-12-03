@@ -58,7 +58,7 @@ public class AdminDeleteCourse extends AppCompatActivity {
                 editCode = (EditText) findViewById(R.id.adminDeleteCourseEditText);
                 delCourse(view);
                 // remove the course from the scrollView
-                openCourseList();
+                openDashboard();
             }
         });
         recyclerView = findViewById(R.id.recyclerView);
@@ -95,6 +95,11 @@ public class AdminDeleteCourse extends AppCompatActivity {
 
     public void openCourseList(){
         Intent intent = new Intent(this, AdminViewCourseList.class);
+        startActivity(intent);
+    }
+
+    public void openDashboard(){
+        Intent intent = new Intent(this, AdminDashboard.class);
         startActivity(intent);
     }
 

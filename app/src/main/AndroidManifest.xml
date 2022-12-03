@@ -21,7 +21,11 @@
         </activity>
         <activity
             android:name=".StudentLogin"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".AdminDeleteCourse"
@@ -50,10 +54,6 @@
         <activity
             android:name=".AdminDashboard"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".AdminAddCourse"

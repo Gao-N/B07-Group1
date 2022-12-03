@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:backgroundTint="#252323"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="16dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/cassycolor"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="16dp">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:orientation="vertical">
-
+        
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,11 +23,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course Name: "
+                android:text="Course name: "
                 android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
+                android:textSize="20sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tvCourseName"
                 android:layout_width="wrap_content"
@@ -35,9 +34,8 @@
                 android:layout_marginLeft="8dp"
                 android:text="name"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="20sp"/>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,11 +45,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Course Code: "
+                android:text="Course code: "
                 android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
+                android:textSize="20sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tvCourseCode"
                 android:layout_width="wrap_content"
@@ -59,9 +56,8 @@
                 android:layout_marginLeft="8dp"
                 android:text="code"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="20sp"/>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,9 +69,8 @@
                 android:layout_height="wrap_content"
                 android:text="Offering Session: "
                 android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
+                android:textSize="20sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tvOfferingSession"
                 android:layout_width="wrap_content"
@@ -83,9 +78,8 @@
                 android:layout_marginLeft="8dp"
                 android:text="W"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="20sp"/>
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,9 +91,8 @@
                 android:layout_height="wrap_content"
                 android:text="Prerequisites: "
                 android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
+                android:textSize="20sp"
+                android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tvPrerequisites"
                 android:layout_width="wrap_content"
@@ -107,7 +100,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="course"
                 android:textColor="@color/white"
-                android:textSize="22sp" />
+                android:textSize="20sp"/>
         </LinearLayout>
 
     </LinearLayout>
