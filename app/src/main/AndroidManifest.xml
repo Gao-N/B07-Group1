@@ -13,7 +13,18 @@
         android:theme="@style/Theme.OFCOURSE"
         tools:targetApi="31">
         <activity
+            android:name=".CourseList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".StudentLogin"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".AdminDeleteCourse"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +41,6 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.OFCOURSE.NoActionBar">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -45,14 +55,12 @@
             android:name=".AdminDashboard"
             android:exported="true" />
         <activity
-            android:name=".AdminDeleteCourse"
-            android:exported="true" />
-        <activity
             android:name=".AdminAddCourse"
             android:exported="true" />
         <activity
             android:name=".AdminViewCourseList"
             android:exported="true" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

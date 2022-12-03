@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cassycolor">
@@ -9,11 +10,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="72dp"
         android:text="@string/course_list"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,6 +28,7 @@
         android:backgroundTint="@color/cassybutton"
         android:text="@string/back"
         android:textColor="@color/buttonText"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,34 +57,28 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="409dp"
-        android:layout_height="476dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/id"
+        android:layout_width="408dp"
+        android:layout_height="455dp"
         app:layout_constraintBottom_toTopOf="@+id/addCourse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/courseLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal" >
-        <EditText
-            android:id="@+id/edit_text"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="5"/>
+    <!--<include
+        android:id="@+id/id"
+        layout="@layout/activity_courselist"
+        android:layout_width="410dp"
+        android:layout_height="493dp"
+        android:layout_weight="1"
+        app:layout_constraintBottom_toTopOf="@+id/addCourse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.475"
+        />-->
 
-        <Button
-            android:id="@+id/delete_button"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            android:background="@android:drawable/ic_delete"
-            android:onClick="onDelete"/>
-        </LinearLayout>
 
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
