@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class CourseList extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db;
     MyAdapter myAdapter;
     ArrayList<Course> list;
 
@@ -33,6 +33,7 @@ public class CourseList extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        db = FirebaseFirestore.getInstance();
         list = new ArrayList<Course>();
         myAdapter = new MyAdapter(this, list);
         recyclerView.setAdapter(myAdapter);

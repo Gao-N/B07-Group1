@@ -10,9 +10,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -66,20 +68,17 @@ public class AdminDashboard extends AppCompatActivity {
                 } else {
                     Map<String, Object> map = new HashMap<>();
                     map.put("currentSession", session.getText().toString());
-                    FirebaseDatabase.getInstance().getReference().child("admin")
-                            .updateChildren(map)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    db.collection("admin").get()
+                            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(getApplicationContext(), "Session Updated Successfully",
-                                            Toast.LENGTH_LONG).show();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), "Error Updating Session",
-                                            Toast.LENGTH_LONG).show();
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult().getDocuments().get(0);
+                                        map.put("email", document.get("email"));
+                                        map.put("password", document.get("password"));
+                                        db.collection("admin").document(document.getId()).set(map);
+                                    }
                                 }
                             });
                 }

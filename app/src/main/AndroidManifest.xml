@@ -26,11 +26,7 @@
         <activity
             android:name=".AdminDeleteCourse"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"
@@ -53,7 +49,12 @@
             android:exported="true" />
         <activity
             android:name=".AdminDashboard"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".AdminAddCourse"
             android:exported="true" />

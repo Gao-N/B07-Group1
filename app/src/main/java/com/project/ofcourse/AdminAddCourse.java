@@ -11,17 +11,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,24 +43,28 @@ public class AdminAddCourse extends AppCompatActivity {
                 editSession = (EditText) findViewById(R.id.offeringSessionEditText);
                 editPrereq = (EditText) findViewById(R.id.prerequisiteEditText);
 
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
-                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+                CollectionReference usersRef = rootRef.collection("courses");
+                Query query = usersRef.whereEqualTo("code", editCode.getText().toString().trim());
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.hasChild(editCode.getText().toString().trim())){
-                            // course already exists
-                            updateCourse(view);
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                if (document.exists()) {
+                                    updateCourse(view, document);
+                                }
+                                else {
+                                    return;
+                                }
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Error",
+                                    Toast.LENGTH_LONG).show();
                         }
-                        else { //course doesn't exist
-                            newCourse(view);
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Toast.makeText(getApplicationContext(), "Failed to add course",
-                                Toast.LENGTH_LONG).show();
                     }
                 });
+                newCourse(view);
                 backToDashboard();
             }
         });
@@ -131,7 +135,7 @@ public class AdminAddCourse extends AppCompatActivity {
                 });
     }
 
-    public void updateCourse(View view){
+    public void updateCourse(View view, DocumentSnapshot document){
         Course course = getCourseDetails();
         checkCourseDetails(course);
 
@@ -140,20 +144,22 @@ public class AdminAddCourse extends AppCompatActivity {
         map.put("code", course.getCode());
         map.put("session", course.getSession());
         map.put("prereq", course.getPrereq());
-        FirebaseDatabase.getInstance().getReference().child("courses")
-                .updateChildren(map)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("courses").get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Course Updated Successfully",
-                                Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Error Updating Course",
-                                Toast.LENGTH_LONG).show();
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()){
+                            db.collection("courses").document(document.getId()).set(map);
+                            // showing this when you add a course?????
+                            Toast.makeText(getApplicationContext(), "Course Updated Successfully",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Error Updating Course",
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
     }
