@@ -5,6 +5,7 @@ import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 
@@ -63,13 +64,12 @@ public class TimelineGenerator {
     }
 
     //Generates the Timeline:
-    public LinkedHashSet<Pair<String, String[]>> generateTimeline() {
+    public LinkedHashMap<String, String[]> generateTimeline() {
 
-        LinkedHashSet<Pair<String, String[]>> Timeline = new LinkedHashSet<>();
+        LinkedHashMap<String, String[]> Timeline = new LinkedHashMap<>();
 
         String presentSession = Session;
         ArrayList<String> CoursesArray = new ArrayList<String>();
-        Pair<String, String[]> SessionPair;
         int coursesInSession = 0;
         int index;
 
@@ -81,8 +81,7 @@ public class TimelineGenerator {
         while (!wantedCourses.isEmpty()){
             index = 0;
             if (coursesInSession >= 6 || !SessionSuitable(presentSession)) { // Max 6 courses per session
-                SessionPair = new Pair(presentSession, CoursesArray.toArray());
-                Timeline.add(SessionPair);
+                Timeline.put(presentSession, (String[]) CoursesArray.toArray());
                 presentSession = advanceSession(presentSession);
                 coursesInSession = 0;
                 CoursesArray.clear();
@@ -99,8 +98,7 @@ public class TimelineGenerator {
             }
         }
         if (CoursesArray.size() != 0) {
-            SessionPair = new Pair(presentSession, CoursesArray.toArray());
-            Timeline.add(SessionPair);
+            Timeline.put(presentSession, (String[]) CoursesArray.toArray());
             presentSession = advanceSession(presentSession);
             coursesInSession = 0;
             CoursesArray.clear();
