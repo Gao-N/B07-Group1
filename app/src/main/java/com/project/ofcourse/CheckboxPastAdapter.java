@@ -1,3 +1,5 @@
+package com.project.ofcourse;
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,26 +12,25 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.project.ofcourse.MyItemRecyclerViewAdapter;
-import com.project.ofcourse.R;
-
 import java.util.ArrayList;
 
-public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHolder> {
+public class CheckboxPastAdapter extends RecyclerView.Adapter<CheckboxPastAdapter.ViewHolder> {
     private Context context;
     private ArrayList<CheckboxClass> checks;
+    public ArrayList<String> selectedCourses;
 
 
-    public CheckboxAdapter(Activity context, ArrayList<CheckboxClass> checks) {
+    public CheckboxPastAdapter(Activity context, ArrayList<CheckboxClass> checks) {
         this.context = context;
         this.checks = checks;
+        this.selectedCourses = new ArrayList<>();
     }
 
     @NonNull
     @Override
      public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
          LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-         View view = layoutInflater.inflate(R.layout.checkboxitem, parent, false);
+         View view = layoutInflater.inflate(R.layout.past_row_item, parent, false);
          ViewHolder viewHolder = new ViewHolder(view);
          return viewHolder;
      }
@@ -52,7 +53,7 @@ public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHo
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.textView6 = itemView.findViewById(R.id.textView6);
-            this.checkboxitem = itemView.findViewById(R.id.checkboxitem);
+            this.checkboxitem = itemView.findViewById(R.id.past_row_item);
             this.checkBox = itemView.findViewById(R.id.checkBox);
 
             checkBox.setOnClickListener(new View.OnClickListener() {
@@ -62,11 +63,13 @@ public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHo
 
                     if (selected) {
                         checks.get(getAdapterPosition()).select(true);
+                        selectedCourses.remove(checks.get(getAdapterPosition()).getCourseCode());
                     }
                     else {
                         checks.get(getAdapterPosition()).select(false);
+                        selectedCourses.add(checks.get(getAdapterPosition()).getCourseCode());
                     }
-                    notify();
+                    notifyDataSetChanged();
                     // for?
                 }
             });

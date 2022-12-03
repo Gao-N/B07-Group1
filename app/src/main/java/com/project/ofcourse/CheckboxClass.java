@@ -1,3 +1,5 @@
+package com.project.ofcourse;
+
 public class CheckboxClass {
     private String courseCode;
     private boolean selected;

@@ -51,6 +51,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="408dp"
+        android:id="@+id/past_courses_recycler_generating"
         android:layout_height="518dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="32dp"
