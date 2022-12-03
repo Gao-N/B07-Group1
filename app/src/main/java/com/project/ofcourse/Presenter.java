@@ -10,15 +10,14 @@ public class Presenter {
     }
 
     public void checkStudent() {
-        Student student = new Student(view.getEmail(), view.getPassword());
+        String email = view.getEmail();
+        String password = view.getPassword();
 
-        if (model.isFound(student)) {
+        if (model.isFound(email, password)) {
             view.openTimelineActivity();
         }
         else {
             view.displayMessage("Incorrect Email or Password");
         }
-
     }
-
 }
