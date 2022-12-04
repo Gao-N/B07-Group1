@@ -44,10 +44,10 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonGenerate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Generate"
         android:backgroundTint="@color/cassybutton"
         android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
