@@ -28,12 +28,15 @@ public class FirebaseHandler {
     }
 
     public static ArrayList<Course> getAllCourses() {
+        return null;
     }
 
     public static ArrayList<String> getStudentPastCourses() {
+        return null;
     }
 
     public static String getSession() {
+        return null;
     }
 
     public static void setStudentTimeline(LinkedHashMap<String, String[]> generateTimeline) {
