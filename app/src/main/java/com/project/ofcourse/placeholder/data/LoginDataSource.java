@@ -1,6 +1,6 @@
-package com.project.ofcourse.data;
+package com.project.ofcourse.placeholder.data;
 
-import com.project.ofcourse.data.model.LoggedInUser;
+import com.project.ofcourse.placeholder.data.model.LoggedInUser;
 
 import java.io.IOException;
 

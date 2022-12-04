@@ -1,4 +1,4 @@
-package com.project.ofcourse.data;
+package com.project.ofcourse.placeholder.data;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.

@@ -2,26 +2,40 @@ package com.project.ofcourse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+
 public class AdminDeleteCourse extends AppCompatActivity {
     EditText editCode;
+    RecyclerView recyclerView;
+    FirebaseFirestore db;
+    MyAdapter myAdapter;
+    ArrayList<Course> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -47,7 +61,40 @@ public class AdminDeleteCourse extends AppCompatActivity {
                 openCourseList();
             }
         });
+
+        //Course list display
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        db = FirebaseFirestore.getInstance();
+        list = new ArrayList<Course>();
+        myAdapter = new MyAdapter(this, list);
+        recyclerView.setAdapter(myAdapter);
+
+        eventChangeListener();
     }
+    private void eventChangeListener(){
+        db.collection("courses").orderBy("code", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>(){
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null){
+                            Log.e("Firestore error", error.getMessage());
+                            return;
+                        }
+
+                        for (DocumentChange dc : value.getDocumentChanges()){
+                            list.add(dc.getDocument().toObject(Course.class));
+                        }
+
+                        myAdapter.notifyDataSetChanged();
+
+                    }
+                });
+    }
+
     public void openCourseList(){
         Intent intent = new Intent(this, AdminViewCourseList.class);
         startActivity(intent);
