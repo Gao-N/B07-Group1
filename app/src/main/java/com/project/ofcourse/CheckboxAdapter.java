@@ -12,15 +12,16 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class CheckboxPastAdapter extends RecyclerView.Adapter<CheckboxPastAdapter.ViewHolder> {
+public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHolder> {
     private Context context;
     private ArrayList<CheckboxClass> checks;
     public ArrayList<String> selectedCourses;
 
 
-    public CheckboxPastAdapter(Activity context, ArrayList<CheckboxClass> checks) {
+    public CheckboxAdapter(Activity context, ArrayList<CheckboxClass> checks) {
         this.context = context;
         this.checks = checks;
         this.selectedCourses = new ArrayList<>();
@@ -44,6 +45,10 @@ public class CheckboxPastAdapter extends RecyclerView.Adapter<CheckboxPastAdapte
 
      @Override
     public int getItemCount() {return checks.size();}
+
+    public ArrayList<String> getSelectedCourses() {
+        return selectedCourses;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView6;
@@ -70,7 +75,6 @@ public class CheckboxPastAdapter extends RecyclerView.Adapter<CheckboxPastAdapte
                         selectedCourses.add(checks.get(getAdapterPosition()).getCourseCode());
                     }
                     notifyDataSetChanged();
-                    // for?
                 }
             });
         }

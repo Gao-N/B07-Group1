@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
+public class GeneratingDefineWantedCoursesActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<CheckboxClass> arrayList = new ArrayList<CheckboxClass>();
@@ -24,9 +24,9 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generating_define_past_courses);
+        setContentView(R.layout.activity_generating_define_wanted_courses);
 
-        recyclerView = findViewById(R.id.past_courses_recycler_generating);
+        recyclerView = findViewById(R.id.wantedRecycler);
         adapter = new CheckboxAdapter(this, getData());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -50,8 +50,8 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
     }
 
     public void afterFcn() {
-        FirebaseHandler.editStudentPastCourses(adapter.getSelectedCourses());
-        Intent nextIntent = new Intent(this, GeneratingDefineWantedCoursesActivity.class);
+        Intent nextIntent = new Intent(this, TimelineGeneratingActivity.class);
+        nextIntent.putExtra("wantedCourses", adapter.getSelectedCourses());
         startActivity(nextIntent);
     }
 }
