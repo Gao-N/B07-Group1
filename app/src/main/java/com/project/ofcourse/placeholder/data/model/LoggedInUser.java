@@ -1,4 +1,4 @@
-package com.project.ofcourse.data.model;
+package com.project.ofcourse.placeholder.data.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
