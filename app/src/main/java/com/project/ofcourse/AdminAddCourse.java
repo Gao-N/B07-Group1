@@ -34,7 +34,7 @@ public class AdminAddCourse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_add_course);
 
-        Button addCourse = findViewById(R.id.addCourseAdminButton);
+        Button addCourse = findViewById(R.id.editDetailsBTN);
         addCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
