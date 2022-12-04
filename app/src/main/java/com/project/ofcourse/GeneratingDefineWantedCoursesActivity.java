@@ -6,14 +6,11 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
-public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
+public class GeneratingDefineWantedCoursesActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ArrayList<CheckboxClass> arrayList = new ArrayList<CheckboxClass>();
@@ -23,22 +20,14 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generating_define_past_courses);
+        setContentView(R.layout.activity_generating_define_wanted_courses);
 
-        recyclerView = findViewById(R.id.past_courses_recycler_generating);
+        recyclerView = findViewById(R.id.wantedRecycler);
         CheckboxAdapter adapter = new CheckboxAdapter(this, getData());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(adapter);
-
-        Button NextBtn = findViewById(R.id.buttonNext);
-        NextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                afterFcn();
-            }
-        });
     }
 
     private ArrayList<CheckboxClass> getData() {
@@ -47,11 +36,4 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
         }
         return arrayList;
     }
-
-    //TODO: PASS DATA FROM ADAPTER TO FIREBASE
-    public void afterFcn() {
-        Intent LogoutIntent = new Intent(this, GeneratingDefineWantedCoursesActivity.class);
-        startActivity(LogoutIntent);
-    }
 }
-
