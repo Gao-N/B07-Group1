@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHolder> {
@@ -44,6 +45,10 @@ public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHo
 
      @Override
     public int getItemCount() {return checks.size();}
+
+    public ArrayList<String> getSelectedCourses() {
+        return selectedCourses;
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textView6;

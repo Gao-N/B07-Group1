@@ -19,6 +19,7 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
     ArrayList<CheckboxClass> arrayList = new ArrayList<CheckboxClass>();
     //String[] lines = (String[]) FirebaseHandler.MakeCourseStringList().toArray();
     String[] lines = {"A48","B52"};
+    CheckboxAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generating_define_past_courses);
 
         recyclerView = findViewById(R.id.past_courses_recycler_generating);
-        CheckboxAdapter adapter = new CheckboxAdapter(this, getData());
+        adapter = new CheckboxAdapter(this, getData());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
@@ -48,10 +49,10 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
         return arrayList;
     }
 
-    //TODO: PASS DATA FROM ADAPTER TO FIREBASE
     public void afterFcn() {
-        Intent LogoutIntent = new Intent(this, GeneratingDefineWantedCoursesActivity.class);
-        startActivity(LogoutIntent);
+        FirebaseHandler.editStudentPastCourses(adapter.getSelectedCourses());
+        Intent nextIntent = new Intent(this, GeneratingDefineWantedCoursesActivity.class);
+        startActivity(nextIntent);
     }
 }
 
