@@ -61,12 +61,11 @@ public class AdminViewCourseList extends AppCompatActivity {
             }
         });
 
-        Button edit = (Button) findViewById(R.id.button2);
+        Button edit = (Button) findViewById(R.id.editCourse);
         edit.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminViewCourseList.this, MyAdminEditCourse.class);
-                startActivity(intent);
+                openAdminEditCourse();
             }
         }));
 
@@ -130,7 +129,7 @@ public class AdminViewCourseList extends AppCompatActivity {
         startActivity(intent);
     }
     public void openAdminEditCourse(){
-        Intent intent = new Intent(this, MyAdminEditCourse.class);
+        Intent intent = new Intent(this, EditCourse.class);
         startActivity(intent);
     }
 }

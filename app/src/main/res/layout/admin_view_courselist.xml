@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/cassybutton"
         android:text="@string/back"
         android:textColor="@color/buttonText"
@@ -32,29 +33,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/addCourse"
-        android:layout_width="95dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="56dp"
+        android:layout_width="115dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="#316C2A"
         android:text="@string/add_course"
         android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id"
+        app:layout_constraintVertical_bias="0.456" />
+
+    <Button
+        android:id="@+id/editCourse"
+        android:layout_width="115dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="20dp"
+        android:text="Edit Course"
+        android:textColor="@color/buttonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id"
+        app:layout_constraintVertical_bias="0.456" />
 
     <Button
         android:id="@+id/delCourse"
-        android:layout_width="95dp"
-        android:layout_height="55dp"
-        android:layout_marginBottom="44dp"
-        android:backgroundTint="#A10C01"
-        android:text="@string/pick_delete_courses"
+        android:layout_width="115dp"
+        android:layout_height="66dp"
+        android:layout_marginEnd="24dp"
+        android:backgroundTint="#831F17"
+        android:text="Delete Course"
         android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/id"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintVertical_bias="0.451" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/id"
@@ -63,16 +83,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/delCourse"
-        app:layout_constraintStart_toEndOf="@+id/addCourse"
-        app:layout_constraintTop_toBottomOf="@+id/id" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

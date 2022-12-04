@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cassycolor">
+    android:background="@color/cassycolor"
+    tools:context=".EditCourseDetails">
 
     <TextView
-        android:id="@+id/editCourseDetailsTV"
+        android:id="@+id/courseDetailsTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="serif"
@@ -23,81 +24,79 @@
         app:layout_constraintVertical_bias="0.104" />
 
     <EditText
-        android:id="@+id/prerequisiteEditText"
+        android:id="@+id/courseNameET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="10dp"
         android:autofillHints=""
         android:backgroundTint="#FFFFFF"
-        android:text = "Prerequisites"
         android:ems="10"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
+        android:text="Course Name"
         android:textColor="@color/white"
         android:textColorHint="@color/editText_hint"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/courseCodeET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/offeringSessionEditText"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintTop_toBottomOf="@+id/courseDetailsTV"
+        app:layout_constraintVertical_bias="0.928" />
 
     <EditText
-        android:id="@+id/courseNameEditText"
+        android:id="@+id/courseCodeET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:autofillHints=""
-        android:backgroundTint="#FFFFFF"
-        android:text = "Course name"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/editText_hint"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.142" />
-
-    <EditText
-        android:id="@+id/courseCodeEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:backgroundTint="#FFFFFF"
         android:ems="10"
-        android:text = "Course Code"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/editText_hint"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseNameEditText"
-        app:layout_constraintVertical_bias="0.036" />
-
-    <EditText
-        android:id="@+id/offeringSessionEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:autofillHints=""
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:text = "Offering session"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp"
+        android:text="Course Code"
         android:textColor="@color/white"
         android:textColorHint="@color/editText_hint"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/offeringSessionET"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseCodeEditText"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/offeringSessionET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:autofillHints=""
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:text="Offering Session"
+        android:textColor="@color/white"
+        android:textColorHint="@color/editText_hint"
+        app:layout_constraintBottom_toTopOf="@+id/prerequisiteET"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/prerequisiteET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:autofillHints=""
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:text="Prerequisites"
+        android:textColor="@color/white"
+        android:textColorHint="@color/editText_hint"
+        app:layout_constraintBottom_toTopOf="@+id/editDetailsBTN"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/editDetailsBTN"
@@ -107,11 +106,11 @@
         android:backgroundTint="#007E72"
         android:text="edit course"
         android:textColor="@color/buttonText"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prerequisiteEditText"
-        app:layout_constraintVertical_bias="0.781" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/backButton"
