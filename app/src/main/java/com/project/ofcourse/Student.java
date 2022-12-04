@@ -1,21 +1,18 @@
 package com.project.ofcourse;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Student {
     String email;
-    String firstName;
     String name;
-    String lastName;
-    String[] past_courses;
+    ArrayList<String> past_courses;
 
     public Student(){}
 
     // Constructor for sign up
     public Student(String email, String firstName, String lastName) {
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.name = firstName + " " + lastName;
     }
 
@@ -24,14 +21,6 @@ public class Student {
     }
 
     public String getEmail() {return email;}
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
 
     @Override
     public boolean equals(Object o) {
