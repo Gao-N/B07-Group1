@@ -11,8 +11,8 @@ public class Presenter {
 
     public void checkStudent() {
         Student student = new Student(view.getEmail(), view.getPassword());
-
         if (model.isFound(student)) {
+            Student.currentUser = view.getEmail();
             view.openTimelineActivity();
         }
         else {

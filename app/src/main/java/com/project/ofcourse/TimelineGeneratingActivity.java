@@ -16,7 +16,7 @@ public class TimelineGeneratingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //TODO: make a cool GIF loading screen
         setContentView(R.layout.activity_timeline_generating_loading);
-        ArrayList<Course> wantedCourses = FirebaseHandler.getCoursesfromCodes((ArrayList<String>) getIntent().getSerializableExtra("wantedCourses"));
+        ArrayList<Course> wantedCourses = FirebaseHandler.getCoursesfromCodes(getIntent().getStringArrayListExtra("wantedCourses"));
         ArrayList<Course> allCourses = FirebaseHandler.getAllCourses();
         ArrayList<String> pastCourses = FirebaseHandler.getStudentPastCourses();
         String Session = FirebaseHandler.getSession();

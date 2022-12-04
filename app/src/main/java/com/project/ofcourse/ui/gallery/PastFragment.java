@@ -1,6 +1,7 @@
 package com.project.ofcourse.ui.gallery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +23,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.project.ofcourse.Course;
+import com.project.ofcourse.EditPastCoursesActivity;
+import com.project.ofcourse.FirebaseHandler;
+import com.project.ofcourse.GeneratingDefineWantedCoursesActivity;
 import com.project.ofcourse.MyAdapter;
 import com.project.ofcourse.R;
 import com.project.ofcourse.databinding.FragmentGalleryBinding;
@@ -54,6 +58,11 @@ public class PastFragment extends Fragment {
         root = binding.getRoot();
 
         generateRecyclerView();
+
+        binding.buttonEditPC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { EditFcn(); }
+        });
 
         return root;
     }
@@ -95,5 +104,10 @@ public class PastFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void EditFcn() {
+        Intent nextIntent = new Intent(getActivity(), EditPastCoursesActivity.class);
+        startActivity(nextIntent);
     }
 }

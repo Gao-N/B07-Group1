@@ -8,6 +8,7 @@ import java.util.ArrayList;
 //import com.google.firebase.database.DatabaseReference;
 //import com.google.firebase.database.FirebaseDatabase;
 //import com.google.firebase.database.ValueEventListener;
+import java.util.ArrayList;
 
 public class Student {
     String email;
@@ -16,7 +17,7 @@ public class Student {
     String firstName;
     String lastName;
 
-    //Course [] pastCourses;
+    static String currentUser;
 
     // Constructor for login
     public Student(String email, String password) {
