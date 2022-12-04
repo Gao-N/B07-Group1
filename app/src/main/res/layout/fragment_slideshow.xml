@@ -37,9 +37,9 @@
 
     <TextView
         android:id="@+id/textView3"
+        android:text="Are you sure you would like to log out?"
         android:layout_width="359dp"
         android:layout_height="105dp"
-        android:text="Are you sure you would like to log out?"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="34sp"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.444"/>
 
     <Button
         android:id="@+id/noLogOut"

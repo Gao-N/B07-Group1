@@ -25,12 +25,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class AdminViewCourseList extends AppCompatActivity {
-
     RecyclerView recyclerView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     MyAdapter myAdapter;
     ArrayList<Course> list;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +75,6 @@ public class AdminViewCourseList extends AppCompatActivity {
                         }
                     }
                 });
-
         recyclerView = findViewById(R.id.id);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -98,7 +95,6 @@ public class AdminViewCourseList extends AppCompatActivity {
                             Log.e("Firestore error", error.getMessage());
                             return;
                         }
-
                         for (DocumentChange dc : value.getDocumentChanges()){
                             list.add(dc.getDocument().toObject(Course.class));
                         }

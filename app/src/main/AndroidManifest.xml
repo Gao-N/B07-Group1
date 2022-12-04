@@ -13,7 +13,7 @@
         android:theme="@style/Theme.OFCOURSE"
         tools:targetApi="31">
         <activity
-            android:name=".GeneratingDefineWantedCoursesActivity"
+            android:name=".CourseList"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -50,6 +50,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".AdminDeleteCourse"
+            android:exported="true">
+
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"

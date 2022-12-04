@@ -10,13 +10,13 @@
         android:id="@+id/adminDeleteCoursesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="serif"
-        android:text="Delete Course"
+        android:text="@string/delete_courses"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.807"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toTopOf="@+id/adminDeleteCoursesButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/adminDeleteCoursesButton"
@@ -45,10 +45,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:backgroundTint="#007E72"
-        android:text="@string/delete_courses"
+        android:text="delete course"
+        android:textColor="@color/buttonText"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
@@ -56,19 +57,19 @@
         android:id="@+id/adminDeleteCoursesBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#00FFFFFF"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/cassybutton"
         android:text="@string/back"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/adminDeleteCoursesTextView"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.006"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="409dp"
-        android:layout_height="397dp"
+        android:layout_width="411dp"
+        android:layout_height="462dp"
         android:layout_marginTop="4dp"
         app:layout_constraintBottom_toTopOf="@+id/adminDeleteCourseEditText"
         app:layout_constraintEnd_toEndOf="parent"
