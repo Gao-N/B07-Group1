@@ -1,5 +1,6 @@
 package com.project.ofcourse;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,9 +33,7 @@ public class EditPCFragment extends Fragment {
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(EditPCFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
+                backToMain();            }
         });
     }
 
@@ -43,5 +42,11 @@ public class EditPCFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    public void backToMain() {
+//        Intent nextIntent = new Intent(this, MainActivity.class);
+//        startActivity(nextIntent);
+    }
+
 
 }

@@ -25,6 +25,11 @@ public class TimelineGenerator {
         return -1;
     }
 
+
+
+
+
+
     /*Will be called in Timeline Generation Activity which consists of:
         - Past Courses Fragment (Creates field for given student in Firebase)
         - Wanted Courses Fragment (Gets stored as an array to be passed here)

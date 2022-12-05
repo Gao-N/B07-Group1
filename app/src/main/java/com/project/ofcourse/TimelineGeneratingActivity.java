@@ -34,7 +34,6 @@ public class TimelineGeneratingActivity extends AppCompatActivity {
         FirebaseHandler.getStudentPastCourses(pastCourses);
         String Session = new String();
         FirebaseHandler.getSession(Session);
-        generate();
 //        try {
 //            Thread.sleep(5000);
 //        } catch (InterruptedException e) {
@@ -44,12 +43,4 @@ public class TimelineGeneratingActivity extends AppCompatActivity {
         startActivity(endGenerationIntent);
     }
 
-    protected void generate() {
-        ArrayList<Course> wantedCourses = FirebaseHandler.getCoursesfromCodes((getIntent().getStringArrayListExtra("wantedCourses")));
-        ArrayList<Course> allCourses = FirebaseHandler.getAllCourses();
-        ArrayList<String> pastCourses = FirebaseHandler.getStudentPastCourses();
-        String Session = FirebaseHandler.getSession();
-        TimelineGenerator Generator = new TimelineGenerator(Session, pastCourses, wantedCourses, allCourses);
-        FirebaseHandler.setStudentTimeline(Generator.generateTimeline());
-    }
 }

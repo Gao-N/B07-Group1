@@ -12,7 +12,6 @@ public class Student {
     static String currentUser;
 
     public Student(){}
->>>>>>>>> Temporary merge branch 2
 
     // Constructor for sign up
     public Student(String email, String firstName, String lastName) {
