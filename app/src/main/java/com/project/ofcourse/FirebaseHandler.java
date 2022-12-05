@@ -55,6 +55,7 @@ public class FirebaseHandler {
 
     //Gets an ArrayList of Course objects from an arraylist of strings of course codes.
     public static ArrayList<Course> getCoursesfromCodes(ArrayList<String> selectedCourses) {
+        System.out.println("Searching for documents with the codes: " + selectedCourses);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         ArrayList<Course> courseList = new ArrayList<>();
         db.collection("courses").get()
@@ -63,9 +64,12 @@ public class FirebaseHandler {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()){
                             for (QueryDocumentSnapshot document: task.getResult()){
+                                System.out.println("Found document! Data: " + document.getData());
                                 Course course = document.toObject(Course.class);
+                                System.out.println("Created a course object! Code: " + course.getCode());
                                 if (selectedCourses.contains(course.getCode())) {
                                     courseList.add(course);
+                                    System.out.println("Adding course to list: "+course.getCode());
                                 }
                             }
                         }
