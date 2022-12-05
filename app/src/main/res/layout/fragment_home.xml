@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonGenerate"
         android:layout_width="116dp"
         android:layout_height="61dp"
         android:backgroundTint="@color/cassybutton"

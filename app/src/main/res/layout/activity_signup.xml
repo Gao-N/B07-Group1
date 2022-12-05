@@ -81,11 +81,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtSignupEmail" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignup"
         android:layout_width="300dp"
         android:layout_height="70dp"
-        android:backgroundTint="@color/cassybutton"
+        android:background="@drawable/round_button"
         android:text="Sign Up"
         android:textSize="20sp"
         android:textColor="@color/buttonText"

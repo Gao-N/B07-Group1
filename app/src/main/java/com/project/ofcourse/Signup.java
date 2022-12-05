@@ -80,23 +80,25 @@ public class Signup extends AppCompatActivity {
         if (!authEmail.matches(emailPattern)) {
             inputEmail.setError("Enter valid/correct Email");
         } else if (authPassword.isEmpty() || authPassword.length() < 6) {
-            inputPassword.setError("Enter Password (at least 6 characters)");
+            inputPassword.setError("Enter Password");
         } else {
             mAuth.createUserWithEmailAndPassword(authEmail, authPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
                         Student studentID = new Student(authEmail, first, last);
+                        Map studentHashMap = new HashMap<>();
+                        studentHashMap.put("name", studentID.name);
+                        studentHashMap.put("email", studentID.email);
+                        studentHashMap.put("past_courses", studentID.past_courses);
 
                         mStore.collection("students")
-                                .add(studentID)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                .document(authEmail).set(studentHashMap)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onSuccess(DocumentReference documentReference) {
+                                        public void onSuccess(Void aVoid) {
                                             Snackbar.make(view, "User Successfully Added", Snackbar.LENGTH_LONG)
                                                     .setAction("Action", null).show();
-                                            Log.d("TAG", "DocumentSnapshot added with ID: " + documentReference.getId());
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
