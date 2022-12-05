@@ -71,11 +71,11 @@ public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHo
 
                     if (selected) {
                         checks.get(getAdapterPosition()).select(true);
-                        selectedCourses.remove(checks.get(getAdapterPosition()).getCourseCode());
+                        selectedCourses.add(checks.get(getAdapterPosition()).getCourseCode());
                     }
                     else {
                         checks.get(getAdapterPosition()).select(false);
-                        selectedCourses.add(checks.get(getAdapterPosition()).getCourseCode());
+                        selectedCourses.remove(checks.get(getAdapterPosition()).getCourseCode());
                     }
                     notifyDataSetChanged();
                 }

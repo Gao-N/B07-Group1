@@ -22,8 +22,8 @@ public class Presenter {
             @Override
             public void studentFound(boolean found) {
                 if (found) {
-                    view.openTimelineActivity();
                     Student.currentUser = email;
+                    view.openTimelineActivity();
                 }
                 else {
                     view.displayMessage("Incorrect Email or Password");

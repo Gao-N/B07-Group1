@@ -80,9 +80,13 @@ public class GeneratingDefinePastCoursesActivity extends AppCompatActivity {
     }
 
     public void afterFcn() {
-        FirebaseHandler.editStudentPastCourses(adapter.getSelectedCourses());
+        concurrency();
         Intent nextIntent = new Intent(this, GeneratingDefineWantedCoursesActivity.class);
         startActivity(nextIntent);
+    }
+    public void concurrency() {
+        FirebaseHandler.editStudentPastCourses(adapter.getSelectedCourses());
+        System.out.println(adapter.getSelectedCourses());
     }
 }
 
