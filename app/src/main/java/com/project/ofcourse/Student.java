@@ -1,6 +1,7 @@
 package com.project.ofcourse;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -8,7 +9,7 @@ public class Student {
     public String email;
     public String name;
     public ArrayList<String> past_courses;
-    public Map timeline;
+    public Map<String, ArrayList<String>> timeline;
     static String currentUser;
 
     public Student(){}
@@ -19,6 +20,8 @@ public class Student {
         this.name = firstName + " " + lastName;
         this.past_courses = new ArrayList<>();
         past_courses.add("empty");
+        this.timeline = new HashMap();
+        timeline.put("empty", past_courses);
 
     }
 

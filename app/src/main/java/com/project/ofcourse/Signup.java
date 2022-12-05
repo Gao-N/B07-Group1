@@ -91,6 +91,7 @@ public class Signup extends AppCompatActivity {
                         studentHashMap.put("name", studentID.name);
                         studentHashMap.put("email", studentID.email);
                         studentHashMap.put("past_courses", studentID.past_courses);
+                        studentHashMap.put("timeline", studentID.timeline);
 
                         mStore.collection("students")
                                 .document(authEmail).set(studentHashMap)
