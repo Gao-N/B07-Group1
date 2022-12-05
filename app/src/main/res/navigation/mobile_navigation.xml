@@ -12,14 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.project.ofcourse.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:id="@+id/nav_past"
+        android:name="com.project.ofcourse.ui.gallery.PastFragment"
+        android:label="@string/PastCourses"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.project.ofcourse.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:id="@+id/nav_logout"
+        android:name="com.project.ofcourse.ui.slideshow.LogOutFragment"
+        android:label="@string/LogOut"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

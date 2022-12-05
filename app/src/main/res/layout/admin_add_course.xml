@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cassycolor">
+
+    <TextView
+        android:id="@+id/editCourseDetailsTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="@string/add_course_details"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.104" />
+
+    <EditText
+        android:id="@+id/prerequisiteEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Prerequisites"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/editText_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/offeringSessionEditText"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <EditText
+        android:id="@+id/courseNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:autofillHints=""
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Course name"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/editText_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
+
+    <EditText
+        android:id="@+id/courseCodeEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Course code"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@color/editText_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseNameEditText"
+        app:layout_constraintVertical_bias="0.036" />
+
+    <EditText
+        android:id="@+id/offeringSessionEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
+        android:hint="Offering session"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/editText_hint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseCodeEditText"
+        app:layout_constraintVertical_bias="0.042" />
+
+    <Button
+        android:id="@+id/editDetailsBTN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="288dp"
+        android:backgroundTint="#007E72"
+        android:text="@string/add_course"
+        android:textColor="@color/buttonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prerequisiteEditText"
+        app:layout_constraintVertical_bias="0.781" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/cassybutton"
+        android:text="@string/back"
+        android:textColor="@color/buttonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
