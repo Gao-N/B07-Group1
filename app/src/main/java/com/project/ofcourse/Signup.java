@@ -80,7 +80,7 @@ public class Signup extends AppCompatActivity {
         if (!authEmail.matches(emailPattern)) {
             inputEmail.setError("Enter valid/correct Email");
         } else if (authPassword.isEmpty() || authPassword.length() < 6) {
-            inputPassword.setError("Enter Password");
+            inputPassword.setError("Enter Password (at least 6 characters)");
         } else {
             mAuth.createUserWithEmailAndPassword(authEmail, authPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
