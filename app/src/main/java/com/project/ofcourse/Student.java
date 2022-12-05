@@ -14,6 +14,7 @@ public class Student {
     public Student(String email, String firstName, String lastName) {
         this.email = email;
         this.name = firstName + " " + lastName;
+        this.past_courses = new ArrayList<>();
     }
 
     public String getName() {
