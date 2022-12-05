@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -68,11 +71,11 @@ public class CheckboxAdapter extends RecyclerView.Adapter<CheckboxAdapter.ViewHo
 
                     if (selected) {
                         checks.get(getAdapterPosition()).select(true);
-                        selectedCourses.remove(checks.get(getAdapterPosition()).getCourseCode());
+                        selectedCourses.add(checks.get(getAdapterPosition()).getCourseCode());
                     }
                     else {
                         checks.get(getAdapterPosition()).select(false);
-                        selectedCourses.add(checks.get(getAdapterPosition()).getCourseCode());
+                        selectedCourses.remove(checks.get(getAdapterPosition()).getCourseCode());
                     }
                     notifyDataSetChanged();
                 }

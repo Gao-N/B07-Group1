@@ -12,10 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.project.ofcourse.AdminAddCourse;
+import com.project.ofcourse.FirebaseHandler;
 import com.project.ofcourse.GeneratingDefinePastCoursesActivity;
 import com.project.ofcourse.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
+
+    String[] lines = FirebaseHandler.courseArray();
 
     private FragmentHomeBinding binding;
 
@@ -51,6 +54,7 @@ public class HomeFragment extends Fragment {
 
     public void openGeneratorFlow(){
         Intent intent = new Intent(getActivity(), GeneratingDefinePastCoursesActivity.class);
+        intent.putExtra("lines", lines);
         startActivity(intent);
     }
 }

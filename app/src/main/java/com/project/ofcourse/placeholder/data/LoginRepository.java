@@ -1,6 +1,6 @@
-package com.project.ofcourse.data;
+package com.project.ofcourse.placeholder.data;
 
-import com.project.ofcourse.data.model.LoggedInUser;
+import com.project.ofcourse.placeholder.data.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and

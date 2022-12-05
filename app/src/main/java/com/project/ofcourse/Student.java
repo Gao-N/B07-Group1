@@ -1,28 +1,26 @@
 package com.project.ofcourse;
 
-import androidx.annotation.NonNull;
 import java.util.ArrayList;
-
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.ValueEventListener;
-=========
+import java.util.Map;
 import java.util.Objects;
->>>>>>>>> Temporary merge branch 2
 
 public class Student {
-    String email;
-    String name;
-    ArrayList<String> past_courses;
+    public String email;
+    public String name;
+    public ArrayList<String> past_courses;
+    public Map timeline;
+    static String currentUser;
 
     public Student(){}
+>>>>>>>>> Temporary merge branch 2
 
     // Constructor for sign up
     public Student(String email, String firstName, String lastName) {
         this.email = email;
         this.name = firstName + " " + lastName;
+        this.past_courses = new ArrayList<>();
+        past_courses.add("empty");
+
     }
 
     public String getName() {

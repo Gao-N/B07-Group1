@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import com.project.ofcourse.data.LoginRepository;
-import com.project.ofcourse.data.Result;
-import com.project.ofcourse.data.model.LoggedInUser;
+import com.project.ofcourse.placeholder.data.LoginRepository;
+import com.project.ofcourse.placeholder.data.Result;
+import com.project.ofcourse.placeholder.data.model.LoggedInUser;
 import com.project.ofcourse.R;
 
 public class LoginViewModel extends ViewModel {

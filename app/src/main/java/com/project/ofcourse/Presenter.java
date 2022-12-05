@@ -22,6 +22,7 @@ public class Presenter {
             @Override
             public void studentFound(boolean found) {
                 if (found) {
+                    Student.currentUser = email;
                     view.openTimelineActivity();
                 }
                 else {
@@ -30,4 +31,5 @@ public class Presenter {
             }
         });
     }
+
 }
