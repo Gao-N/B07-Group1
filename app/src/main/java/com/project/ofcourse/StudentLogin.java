@@ -2,6 +2,7 @@ package com.project.ofcourse;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +13,7 @@ import android.widget.Toast;
 public class StudentLogin extends AppCompatActivity {
     private Presenter presenter;
 
-    private Button btnLogin;
-    private Button btnSignUp;
-    private Button btnAdminLogin;
+    private ProgressDialog progressDialog;
 
     public String getEmail() {
         EditText txtEmail = (EditText)findViewById(R.id.txtStudentEmail);
@@ -39,6 +38,7 @@ public class StudentLogin extends AppCompatActivity {
     }
 
     public void displayMessage(String message) {
+        progressDialog.dismiss();
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
@@ -47,17 +47,22 @@ public class StudentLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_login);
 
+        progressDialog = new ProgressDialog(this);
         presenter = new Presenter(new Model(), this);
 
-        btnLogin = (Button)findViewById(R.id.btnLogin);
+        Button btnLogin = (Button)findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog.setMessage("Logging on...");
+                progressDialog.setTitle("Student Login");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
                 presenter.checkStudent();
             }
         });
 
-        btnSignUp = (Button)findViewById(R.id.btnSignUp);
+        Button btnSignUp = (Button)findViewById(R.id.btnSignUp);
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,7 +70,7 @@ public class StudentLogin extends AppCompatActivity {
             }
         });
 
-        btnAdminLogin = (Button)findViewById(R.id.btnAdminLogin);
+        Button btnAdminLogin = (Button)findViewById(R.id.btnAdminLogin);
         btnAdminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +80,7 @@ public class StudentLogin extends AppCompatActivity {
     }
 
     public void openTimelineActivity() {
-        // launches the default MainActivity, needs to be changed to the Timeline
+        progressDialog.dismiss();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

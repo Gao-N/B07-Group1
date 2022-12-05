@@ -8,16 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -26,23 +24,24 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.jetbrains.annotations.NotNull;
+import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.ArrayList;
 
-public class AdminDeleteCourse extends AppCompatActivity {
+public class EditCourse extends AppCompatActivity {
     EditText editCode;
     RecyclerView recyclerView;
     FirebaseFirestore db;
     MyAdapter myAdapter;
     ArrayList<Course> list;
+    static DocumentSnapshot doc;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_delete_courses);
+        setContentView(R.layout.activity_edit_course);
 
-        Button back = findViewById(R.id.adminDeleteCoursesBackButton);
+        Button back = findViewById(R.id.backBTN);
         back.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -50,15 +49,12 @@ public class AdminDeleteCourse extends AppCompatActivity {
             }
         });
 
-        Button del = findViewById(R.id.adminDeleteCoursesButton);
-        del.setOnClickListener(new View.OnClickListener(){
+        Button edit = findViewById(R.id.editCourseBTN);
+        edit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //firebase stuff to delete course
-                editCode = (EditText) findViewById(R.id.adminDeleteCourseEditText);
-                delCourse(view);
-                // remove the course from the scrollView
-                openDashboard();
+                editCode = (EditText) findViewById(R.id.courseCode);
+                editCourse(view);
             }
         });
         recyclerView = findViewById(R.id.recyclerView);
@@ -72,7 +68,7 @@ public class AdminDeleteCourse extends AppCompatActivity {
 
         eventChangeListener();
     }
-
+//
     private void eventChangeListener(){
         db.collection("courses").orderBy("code", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>(){
@@ -98,46 +94,32 @@ public class AdminDeleteCourse extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openDashboard(){
-        Intent intent = new Intent(this, AdminDashboard.class);
+    public void openEditDetails(){
+        Intent intent = new Intent(this, EditCourseDetails.class);
         startActivity(intent);
     }
 
-    public void delCourse(View view){
+    public void editCourse(View view) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         String courseCode = editCode.getText().toString().trim();
 
-        db.collection("courses").whereEqualTo("code", courseCode)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                        if (task.isSuccessful() && !task.getResult().isEmpty()){
-                            DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                            String docID = documentSnapshot.getId();
-
-                            db.collection("courses").document(docID)
-                                    .delete()
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            Toast.makeText(getApplicationContext(), "Successfully Deleted Course", Toast.LENGTH_LONG).show();
-                                        }
-                                    }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull @NotNull Exception e){
-                                            Toast.makeText(getApplicationContext(), "Error, Failed to Delete Course", Toast.LENGTH_LONG).show();
-
-                                        }
-                                    });
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Error, Failed to Delete Course", Toast.LENGTH_LONG).show();
+        CollectionReference usersRef = db.collection("courses");
+        Query query = usersRef.whereEqualTo("code", courseCode);
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                    for (DocumentSnapshot document : task.getResult()) {
+                        if (document.exists()) {
+                            doc = document;
+                            openEditDetails();
                         }
                     }
-                });
+                }
+                else {
+                    Toast.makeText(getApplicationContext(),"Invalid Course Code", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
-
 }
-
-// make it so that the course is deleted from the course list
