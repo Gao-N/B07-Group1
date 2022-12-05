@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -50,7 +50,39 @@
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <TextView
-                android:id="@+id/courseList"
+                android:id="@+id/courseList1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="course array"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/courseList2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="course array"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/courseList3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="course array"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/courseList4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="course array"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/courseList5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"

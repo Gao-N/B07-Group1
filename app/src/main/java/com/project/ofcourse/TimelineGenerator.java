@@ -1,22 +1,16 @@
 package com.project.ofcourse;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TimelineGenerator extends AppCompatActivity {
     // idk if you still need this
@@ -25,42 +19,21 @@ public class TimelineGenerator extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     TimelineAdapter adapter;
-    ArrayList<String> list;
+    HashMap<String, ArrayList<String>> map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_home);
 
-        // do stuff
-
         recyclerView = findViewById(R.id.id);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        list = new ArrayList<String>();
-        adapter = new TimelineAdapter(this, list);
+        map = new HashMap<String, ArrayList<String>>();
+        //map.put("session",db.collection("students").document("bob@gmail.com").get("session"));
+        adapter = new TimelineAdapter(this, map);
         recyclerView.setAdapter(adapter);
-
-        eventChangeListener();
-    }
-
-    private void eventChangeListener(){
-        // you have to change this, im not sure how you're storing the info in firebase
-        db.collection("student").orderBy("code", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>(){
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null){
-                            Log.e("Firestore error", error.getMessage());
-                            return;
-                        }
-                        for (DocumentChange dc : value.getDocumentChanges()){
-                            list.add(dc.getDocument().toObject(String.class));
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-                });
     }
     {
         //STREF = new DatabaseReference.CompletionListener();

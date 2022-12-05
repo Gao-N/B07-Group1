@@ -35,7 +35,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.courseCode.setText(course.getCode());
         holder.offeringSession.setText(course.getSession());
         holder.prerequisites.setText(course.getPrereq());
-
     }
 
     @Override

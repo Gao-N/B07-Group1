@@ -10,14 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.MyViewHolder>{
     Context context;
     ArrayList<String> list;
+    String session;
+    HashMap<String, ArrayList<String>> map;
 
-    public TimelineAdapter(Context context, ArrayList<String> list){
+    public TimelineAdapter(Context context,  HashMap<String, ArrayList<String>> map){
         this.context = context;
-        this.list = list;
+        this.map = map;
     }
 
     @NonNull
@@ -29,24 +32,46 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull TimelineAdapter.MyViewHolder holder, int position) {
-        // not sure if this works
-        String s = list.get(position);
-        holder.courseList.setText(s);
+        //session = map.get(position);
+        holder.session.setText(session);
+        if (list.size() <= 1) {
+            holder.courseList1.setText(list.get(0));
+        }
+        if (list.size() <= 2) {
+            holder.courseList2.setText(list.get(1));
+        }
+        if (list.size() <= 3) {
+            holder.courseList3.setText(list.get(2));
+        }
+        if (list.size() <= 4) {
+            holder.courseList4.setText(list.get(3));
+        }
+        if (list.size() <= 5) {
+            holder.courseList5.setText(list.get(4));
+        }
     }
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return map.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView session;
-        TextView courseList;
+        TextView courseList1;
+        TextView courseList2;
+        TextView courseList3;
+        TextView courseList4;
+        TextView courseList5;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
             session = itemView.findViewById(R.id.session);
-            courseList = itemView.findViewById(R.id.courseList);
+            courseList1 = itemView.findViewById(R.id.courseList1);
+            courseList2 = itemView.findViewById(R.id.courseList2);
+            courseList3 = itemView.findViewById(R.id.courseList3);
+            courseList4 = itemView.findViewById(R.id.courseList4);
+            courseList5 = itemView.findViewById(R.id.courseList5);
         }
     }
 }
