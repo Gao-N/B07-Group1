@@ -78,6 +78,7 @@ public class AdminDashboard extends AppCompatActivity {
                                         map.put("email", document.get("email"));
                                         map.put("password", document.get("password"));
                                         db.collection("admin").document(document.getId()).set(map);
+                                        Toast.makeText(getApplicationContext(),"Session updated", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
@@ -85,7 +86,6 @@ public class AdminDashboard extends AppCompatActivity {
             }
         });
     }
-
 
     public void openAdminAddCourse(){
         Intent intent = new Intent(this, AdminAddCourse.class);

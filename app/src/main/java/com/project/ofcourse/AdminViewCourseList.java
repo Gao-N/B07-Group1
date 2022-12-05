@@ -60,6 +60,15 @@ public class AdminViewCourseList extends AppCompatActivity {
                 openAdminDeleteCourse();
             }
         });
+
+        Button edit = (Button) findViewById(R.id.editCourse);
+        edit.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openAdminEditCourse();
+            }
+        }));
+
         db.collection("courses")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -117,6 +126,10 @@ public class AdminViewCourseList extends AppCompatActivity {
 
     public void openAdminDeleteCourse() {
         Intent intent = new Intent(this, AdminDeleteCourse.class);
+        startActivity(intent);
+    }
+    public void openAdminEditCourse(){
+        Intent intent = new Intent(this, EditCourse.class);
         startActivity(intent);
     }
 }
