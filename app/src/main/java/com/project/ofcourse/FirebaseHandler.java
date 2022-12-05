@@ -54,10 +54,9 @@ public class FirebaseHandler {
     }
 
     //Gets an ArrayList of Course objects from an arraylist of strings of course codes.
-    public static ArrayList<Course> getCoursesfromCodes(ArrayList<String> selectedCourses) {
+    public static void getCoursesfromCodes(ArrayList<String> selectedCourses, ArrayList<Course> output) {
         System.out.println("Searching for documents with the codes: " + selectedCourses);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        ArrayList<Course> courseList = new ArrayList<>();
         db.collection("courses").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -68,18 +67,16 @@ public class FirebaseHandler {
                                 Course course = document.toObject(Course.class);
                                 System.out.println("Created a course object! Code: " + course.getCode());
                                 if (selectedCourses.contains(course.getCode())) {
-                                    courseList.add(course);
+                                    output.add(course);
                                     System.out.println("Adding course to list: "+course.getCode());
                                 }
                             }
                         }
                     }
                 });
-        return courseList;
     }
 
-    public static ArrayList<Course> getAllCourses() {
-        ArrayList<Course> courseList = new ArrayList<>();
+    public static void getAllCourses(ArrayList<Course> list) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("courses").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -89,43 +86,47 @@ public class FirebaseHandler {
                             for (QueryDocumentSnapshot document: task.getResult()){
                                 Course course = document.toObject(Course.class);
                                 if (course.getCode() != null) {
-                                    courseList.add(course);
+                                    list.add(course);
+                                    System.out.println("Added another course!");
                                 }
                             }
-                        }
-                        else {
-
+                            System.out.println("Full course list: " + list);
                         }
                     }
                 });
-
-        return courseList;
+        System.out.println("Full course list: " + list);
+        for (int i = 0 ; i < list.size() ; i++){
+            System.out.println("In all course list: " + list.get(i).getCode());
+        }
     }
 
-    public static ArrayList<String> getStudentPastCourses() {
-        ArrayList<String> pastList = new ArrayList<>();
-        Student user = new Student();
+    public static void getStudentPastCourses(ArrayList<String> pastList) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("students").whereEqualTo("email", Student.currentUser)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                            if (task.isSuccessful() && !task.getResult().isEmpty()){
-                                DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
-                                Student user = documentSnapshot.toObject(Student.class);
-
+                            if (task.isSuccessful()){
+                                for(QueryDocumentSnapshot document: task.getResult()) {
+                                    Student user = document.toObject(Student.class);
+                                    if (user != null) {
+                                        for (int i = 0 ; i < user.past_courses.size() ; i++){
+                                            pastList.set(i, user.past_courses.get(i));
+                                        }
+                                    }
+                                }
 
                             }
+
                         }
                     });
-            return pastList;
     }
 
-    public static String getSession() {
+
+    public static void getSession(String session) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        final String[] session = {""};
+
         db.collection("admin").document("WGcecRzvEcbabR2pcrzP").get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -133,13 +134,13 @@ public class FirebaseHandler {
                         if (task.isSuccessful()){
                             DocumentSnapshot doc = task.getResult();
                             if (doc.exists()){
-                                session[0] = doc.getString("currentSession");
+                                session.concat(doc.getString("currentSession"));
                             }
                         }
 
                     }
                 });
-        return session[0];
+
     }
 
     public static void setStudentTimeline(LinkedHashMap<String, String[]> generateTimeline) {
