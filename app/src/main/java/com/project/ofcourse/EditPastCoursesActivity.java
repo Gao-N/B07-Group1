@@ -1,21 +1,12 @@
 package com.project.ofcourse;
 
-import static java.lang.Thread.sleep;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,14 +16,16 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.project.ofcourse.databinding.ActivityEditPastCoursesBinding;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -91,9 +84,6 @@ public class EditPastCoursesActivity extends AppCompatActivity {
     }
 
     public void createUI(){
-
-
-
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_edit_past_courses);
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -138,5 +128,9 @@ public class EditPastCoursesActivity extends AppCompatActivity {
         FirebaseHandler.editStudentPastCourses(adapter.getSelectedCourses());
         Intent nextIntent = new Intent(this, MainActivity.class);
         startActivity(nextIntent);
+    }
+
+    public CheckboxAdapter getAdapter() {
+        return adapter;
     }
 }

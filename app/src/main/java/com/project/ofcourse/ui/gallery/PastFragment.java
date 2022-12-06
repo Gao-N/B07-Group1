@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +15,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -24,8 +26,6 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.project.ofcourse.Course;
 import com.project.ofcourse.EditPastCoursesActivity;
-import com.project.ofcourse.FirebaseHandler;
-import com.project.ofcourse.GeneratingDefineWantedCoursesActivity;
 import com.project.ofcourse.MyAdapter;
 import com.project.ofcourse.R;
 import com.project.ofcourse.databinding.FragmentGalleryBinding;
@@ -80,21 +80,34 @@ public class PastFragment extends Fragment {
     }
 
     private void eventChangeListener() {
-        db.collection("courses").orderBy("code", Query.Direction.ASCENDING)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+        db.collection("students").whereEqualTo("email", FirebaseAuth.getInstance().getCurrentUser().getEmail()).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null) {
-                            Log.e("Firestore error", error.getMessage());
-                            return;
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<String> pastCourses = (ArrayList<String>)task.getResult().getDocuments().get(0).get("past_courses");
+                            for (int i = 0; i < pastCourses.size(); i++) {
+                                String courseCode = pastCourses.get(i);
+                                db.collection("courses").orderBy("code", Query.Direction.ASCENDING)
+                                        .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                                                if (error != null) {
+                                                    Log.e("Firestore error", error.getMessage());
+                                                    return;
+                                                }
+
+                                                for (DocumentChange dc : value.getDocumentChanges()) {
+                                                    if (dc.getDocument().toObject(Course.class).code.equals(courseCode)) {
+                                                        list.add(dc.getDocument().toObject(Course.class));
+                                                    }
+                                                }
+
+                                                myAdapter.notifyDataSetChanged();
+                                            }
+                                        });
+                            }
                         }
-
-                        for (DocumentChange dc : value.getDocumentChanges()) {
-                            list.add(dc.getDocument().toObject(Course.class));
-                        }
-
-                        myAdapter.notifyDataSetChanged();
-
                     }
                 });
     }

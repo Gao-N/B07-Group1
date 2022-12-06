@@ -66,8 +66,6 @@ public class TimelineGenerator {
                     continue;
                 }
 
-                System.out.println("Out of the for in addPrereq");
-
                 preReqs = getPrereqs(wantedCourses.get(i));
 
                 for (String preReq : preReqs) {          // Check Prerequisite Courses
@@ -78,7 +76,6 @@ public class TimelineGenerator {
                 }
             }
             allSatisfied = !courseMissingPrereq;
-            System.out.println("exited the big While once");
         }
     }
 
@@ -122,8 +119,8 @@ public class TimelineGenerator {
     public boolean prereqsFulfilled(Course course) {
         if(course.prereq.equals("")) {return true;}
         String[] prereqs = getPrereqs(course);
-        for (int i = 0; i < prereqs.length; i++) {
-            if (!pastCourses.contains(prereqs[i])) {
+        for (String prereq : prereqs) {
+            if (!pastCourses.contains(prereq)) {
                 return false;
             }
         }
@@ -132,9 +129,8 @@ public class TimelineGenerator {
 
     public boolean suitableSession(Course course, String session) {
         String sessionType = String.valueOf(session.charAt(0));
-//        ArrayList<String> check;
-//        check = getOfferingSession(course);
-        return sessionType.equals(course.session);
+        return (sessionType.compareTo(course.session) == 0);
+
     }
 
     private boolean suitableToAdd(Course course, String presentSession) {
@@ -160,6 +156,14 @@ public class TimelineGenerator {
         }
     }
 
+    public boolean coursesNotThere(){
+        for (int i = 0; i < wantedCourses.size(); i++) {
+            if (!pastCourses.contains(wantedCourses.get(i).code)) {return true;}
+        }
+        return false;
+    }
+
+
     public int getOneNotOther(ArrayList<Course> added, ArrayList<Course> wanted) {
         for (int i = 0; i < wantedCourses.size(); i++) {
             if (!added.contains(wanted.get(i))) {
@@ -173,12 +177,13 @@ public class TimelineGenerator {
     public LinkedHashMap<String, ArrayList<String>> generateTimeline() {
 
         LinkedHashMap<String, ArrayList<String>> Timeline = new LinkedHashMap<>();
-        String presentSession = Session;
+        String presentSession = new String(Session);
         Course currentCourse;
         String courseCode;
         ArrayList<Course> added = new ArrayList<>();
-        addPrereqs();
         ArrayList<String> arrayList = new ArrayList<>();
+
+        addPrereqs();
 
 
         while (added.size() < wantedCourses.size()) {
@@ -186,31 +191,31 @@ public class TimelineGenerator {
             if (added.size() == wantedCourses.size() - 1) {
                 arrayList.clear();
                 arrayList.add(wantedCourses.get(getOneNotOther(added, wantedCourses)).code);
-                presentSession = newSession(presentSession);
-                Timeline.put(presentSession, arrayList);
+                presentSession = new String(newSession(presentSession));
+                Timeline.put(new String(presentSession), (ArrayList<String>)arrayList.clone());
                 return Timeline;
             }
 
             for (int i = 0; i < wantedCourses.size(); i++) {
-
                 currentCourse = wantedCourses.get(i);
                 courseCode = currentCourse.code;
 
-                if (prereqsFulfilled(currentCourse) && suitableSession(currentCourse, presentSession) && !added.contains(currentCourse)) {
+                if (prereqsFulfilled(currentCourse) && suitableSession(currentCourse, presentSession) && !pastCourses.contains(courseCode) && !added.contains(wantedCourses.get(i))) {
                     arrayList.add(courseCode);
                     added.add(currentCourse);
                     pastCourses.add(courseCode);
                 }
-                if (arrayList.size() > 5) {
-                    Timeline.put(presentSession, arrayList);
-                    arrayList.clear();
-                    presentSession = newSession(presentSession);
-                }
-            }
-            Timeline.put(presentSession, arrayList);
-            presentSession = newSession(presentSession);
-        }
 
+                if (arrayList.size() > 5) {
+                    Timeline.put(new String(presentSession), (ArrayList<String>)arrayList.clone());
+                    arrayList.clear();
+                    presentSession = new String(newSession(presentSession));
+                }
+
+            }
+            Timeline.put(new String(presentSession), (ArrayList<String>)arrayList.clone());
+            presentSession = new String(newSession(presentSession));
+        }
         return Timeline;
     }
 

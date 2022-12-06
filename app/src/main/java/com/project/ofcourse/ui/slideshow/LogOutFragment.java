@@ -8,13 +8,11 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.project.ofcourse.StudentLogin;
 import com.project.ofcourse.databinding.FragmentSlideshowBinding;
-import com.project.ofcourse.ui.home.HomeFragment;
 
 
 
@@ -28,31 +26,18 @@ public class LogOutFragment extends Fragment {
 
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
+        logOutFcn();
         return root;
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.noLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment HomeFrag = new HomeFragment();
-                FragmentTransaction ft = getFragmentManager().beginTransaction(); //deprecated but oh my god switching within fragments is annoying
-                ft.replace(((ViewGroup)getView().getParent()).getId(), HomeFrag);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
-        binding.yesLogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logOutFcn();
-            }
-        });
+//        binding.yesLogOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                logOutFcn();
+//            }
+//        });
     }
 
 
