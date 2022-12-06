@@ -2,6 +2,7 @@ package com.project.ofcourse;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Student {
@@ -11,7 +12,8 @@ public class Student {
     public HashMap timeline;
     static String currentUser;
 
-    public Student(){}
+    public Student() {
+    }
 
     // Constructor for sign up
     public Student(String email, String firstName, String lastName) {
@@ -26,7 +28,9 @@ public class Student {
         return name;
     }
 
-    public String getEmail() {return email;}
+    public String getEmail() {
+        return email;
+    }
 
     @Override
     public boolean equals(Object o) {
