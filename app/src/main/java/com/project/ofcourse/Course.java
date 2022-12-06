@@ -14,7 +14,6 @@ public class Course {
         this.code = code;
         this.session = session;
         this.prereq = prereq;
-
     }
 
     public String getName() {

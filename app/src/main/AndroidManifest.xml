@@ -41,14 +41,23 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".EditPastCoursesActivity"
+            android:exported="false"
+            android:label="@string/title_activity_edit_past_courses"
+            android:theme="@style/Theme.OFCOURSE.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".StudentLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".AdminDeleteCourse"
             android:exported="true" />
@@ -79,7 +88,8 @@
             android:exported="true" />
         <activity
             android:name=".AdminViewCourseList"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"
