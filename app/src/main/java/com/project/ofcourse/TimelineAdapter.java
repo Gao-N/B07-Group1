@@ -41,6 +41,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.MyView
         for (int i = value.size(); i < 6; i++) {
             value.add("");
         }
+        holder.session.setText(key);
         holder.courseList1.setText(value.get(0));
         holder.courseList2.setText(value.get(1));
         holder.courseList3.setText(value.get(2));
