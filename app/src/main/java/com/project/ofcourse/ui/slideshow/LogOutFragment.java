@@ -5,22 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 
-
-import com.project.ofcourse.MainActivity;
-import com.project.ofcourse.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.project.ofcourse.StudentLogin;
 import com.project.ofcourse.databinding.FragmentSlideshowBinding;
 import com.project.ofcourse.ui.home.HomeFragment;
-import com.project.ofcourse.ui.login.LoginActivity;
 
 
 
@@ -69,6 +63,7 @@ public class LogOutFragment extends Fragment {
     }
 
     public void logOutFcn() {
+        FirebaseAuth.getInstance().signOut();
         Intent LogoutIntent = new Intent(getActivity(), StudentLogin.class);
         startActivity(LogoutIntent);
     }
