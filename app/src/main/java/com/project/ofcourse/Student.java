@@ -8,7 +8,7 @@ public class Student {
     public String email;
     public String name;
     public ArrayList<String> past_courses;
-    public Map timeline;
+    public Map<String, ArrayList<String>> timeline;
     static String currentUser;
 
     public Student(){}

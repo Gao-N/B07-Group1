@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -80,6 +81,10 @@ public class GeneratingDefineWantedCoursesActivity extends AppCompatActivity {
     }
 
     public void afterFcn() {
+        if (adapter.getSelectedCourses().isEmpty()) {
+            Toast.makeText(this, "You must pick at least one course", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent nextIntent = new Intent(this, TimelineGeneratingActivity.class);
         nextIntent.putExtra("wantedCourses", adapter.getSelectedCourses());
         startActivity(nextIntent);
