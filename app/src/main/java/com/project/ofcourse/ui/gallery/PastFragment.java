@@ -59,10 +59,6 @@ public class PastFragment extends Fragment {
 
         generateRecyclerView();
 
-        binding.buttonEditPC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { EditFcn(); }
-        });
 
         return root;
     }
