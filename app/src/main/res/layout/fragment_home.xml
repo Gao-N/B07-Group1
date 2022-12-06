@@ -9,7 +9,7 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/id"
+        android:id="@+id/id2"
         android:layout_width="408dp"
         android:layout_height="455dp"
         android:layout_marginTop="28dp"
@@ -19,17 +19,17 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonGenerate"
         android:layout_width="116dp"
         android:layout_height="61dp"
         android:backgroundTint="@color/cassybutton"
         android:text="Generate"
         android:textColor="@color/buttonText"
-        app:layout_constraintBottom_toBottomOf="@+id/id"
-        app:layout_constraintEnd_toEndOf="@+id/id"
+        app:layout_constraintBottom_toBottomOf="@+id/id2"
+        app:layout_constraintEnd_toEndOf="@+id/id2"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/id"
-        app:layout_constraintTop_toBottomOf="@+id/id"
+        app:layout_constraintStart_toStartOf="@+id/id2"
+        app:layout_constraintTop_toBottomOf="@+id/id2"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView

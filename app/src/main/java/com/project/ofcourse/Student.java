@@ -1,39 +1,43 @@
 package com.project.ofcourse;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Student {
-    String email;
-    String password;
-    String firstName;
-    String lastName;
+    public String email;
+    public String name;
+    public ArrayList<String> past_courses;
+    public HashMap timeline;
+    static String currentUser;
 
-    //Course [] pastCourses;
-
-    // Constructor for login
-    public Student(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+    public Student(){}
 
     // Constructor for sign up
-    public Student(String email, String password, String firstName, String lastName) {
+    public Student(String email, String firstName, String lastName) {
         this.email = email;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = firstName + " " + lastName;
+        this.past_courses = new ArrayList<>();
+        past_courses.add("empty");
+
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {return email;}
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(email, student.email) && Objects.equals(password, student.password);
+        return Objects.equals(email, student.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, password);
+        return Objects.hash(email);
     }
 }

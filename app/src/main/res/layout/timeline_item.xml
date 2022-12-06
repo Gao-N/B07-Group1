@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="course array"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
             <TextView
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="course array"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="course array"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="course array"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
             <TextView
@@ -86,7 +86,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
-                android:text="course array"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/courseList6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="20sp"/>
         </LinearLayout>

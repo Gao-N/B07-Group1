@@ -1,28 +1,39 @@
 package com.project.ofcourse;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
+import android.view.View;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.project.ofcourse.databinding.ActivityMainBinding;
-import com.project.ofcourse.ui.login.LoginActivity;
-import com.project.ofcourse.ui.slideshow.LogOutFragment;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
-
+    RecyclerView recyclerView;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    TimelineAdapter adapter;
+    HashMap<String, ArrayList<String>> map;
+    String sess;
+    ArrayList<String> courses;
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -54,6 +65,30 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        String email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+
+        db.collection("students").whereEqualTo("email", email).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            map = new HashMap<String, ArrayList<String>>();
+                            DocumentSnapshot document = task.getResult().getDocuments().get(0);
+                            map = (HashMap)document.get("timeline");
+                            updateRecyclerView();
+                        }
+                    }
+                });
+    }
+
+    public void updateRecyclerView() {
+        recyclerView = findViewById(R.id.id2);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new TimelineAdapter(this, map);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
